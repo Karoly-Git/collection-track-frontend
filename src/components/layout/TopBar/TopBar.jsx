@@ -2,6 +2,8 @@ import React from 'react';
 
 export default function TopBar() {
     return (
-        <div>TopBar</div>
+        <div>
+            <h1>Collection Tracker</h1>
+        </div>
     )
 }
