@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 
-export default function Sidebar() {
+export default function Sidebar({ isSidebarOpen }) {
     return (
-        <nav className="sidebar">
+        <nav className={`sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
             <ul>
                 <li>
                     <NavLink to="/" end>

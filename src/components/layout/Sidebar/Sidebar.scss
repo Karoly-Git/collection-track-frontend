@@ -2,28 +2,48 @@
     background-color: #143757;
     padding: 1.5rem;
     display: flex;
+    width: 240px;
+    transition: width 0.3s ease, padding 0.3s ease;
+    overflow: hidden;
+    /* Hides contents when collapsed */
 
     ul {
         list-style: none;
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        transition: opacity 0.2s ease;
+        /* Fade out when collapsing */
+    }
 
-        li {
-            display: flex;
+    li {
+        display: flex;
+    }
 
+    a {
+        display: flex;
+        padding: 0.5rem 1rem;
+        color: white;
+        text-decoration: none;
+        border-radius: 0.25rem;
 
-            a {
-                display: flex;
-                padding: 0.5rem 1rem;
-                color: white;
-                text-decoration: none;
-                border-radius: 0.25rem;
-
-                &.active {
-                    background-color: #386185;
-                }
-            }
+        &.active {
+            background-color: #386185;
         }
+    }
+
+    /* Collapsed state */
+    &.collapsed {
+        width: 0;
+        /* Sidebar disappears */
+        padding: 0;
+        /* Prevents padding from showing */
+    }
+
+    &.collapsed ul {
+        opacity: 0;
+        /* Hides text smoothly */
+        pointer-events: none;
+        /* Prevents clicking invisible items */
     }
 }

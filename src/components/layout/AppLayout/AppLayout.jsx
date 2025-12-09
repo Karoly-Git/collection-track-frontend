@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import TopBar from '../TopBar/TopBar';
 import Sidebar from '../Sidebar/Sidebar';
 import { Outlet } from 'react-router-dom';
@@ -5,13 +6,15 @@ import { Outlet } from 'react-router-dom';
 import "./AppLayout.css";
 
 export default function AppLayout() {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
     return (
         <div className="app-layout">
-            <TopBar />
+            <TopBar onToggleSidebar={() => setIsSidebarOpen(prev => !prev)} />
 
             {/* Row layout wrapper */}
             <div className="layout-row">
-                <Sidebar />
+                <Sidebar isSidebarOpen={isSidebarOpen} />
 
                 <main className="content">
                     <Outlet />
