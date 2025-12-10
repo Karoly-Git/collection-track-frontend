@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 
-export default function Sidebar({ isSidebarOpen }) {
+export interface SidebarProps {
+    isSidebarOpen: boolean;
+}
+
+export default function Sidebar({ isSidebarOpen }: SidebarProps) {
     return (
         <nav className={`sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
             <ul>
@@ -11,14 +15,10 @@ export default function Sidebar({ isSidebarOpen }) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/reports">
-                        Reports
-                    </NavLink>
+                    <NavLink to="/reports">Reports</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/settings">
-                        Settings
-                    </NavLink>
+                    <NavLink to="/settings">Settings</NavLink>
                 </li>
             </ul>
         </nav>
