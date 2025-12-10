@@ -1,18 +1,17 @@
-import { useState } from 'react';
-import TopBar from '../TopBar/TopBar';
-import Sidebar from '../Sidebar/Sidebar';
-import { Outlet } from 'react-router-dom';
+import { useState } from "react";
+import TopBar from "../TopBar/TopBar";
+import Sidebar from "../Sidebar/Sidebar";
+import { Outlet } from "react-router-dom";
 
 import "./AppLayout.css";
 
 export default function AppLayout() {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
 
     return (
         <div className="app-layout">
-            <TopBar onToggleSidebar={() => setIsSidebarOpen(prev => !prev)} />
+            <TopBar onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)} />
 
-            {/* Row layout wrapper */}
             <div className="layout-row">
                 <Sidebar isSidebarOpen={isSidebarOpen} />
 
