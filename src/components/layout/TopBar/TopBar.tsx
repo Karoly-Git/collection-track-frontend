@@ -8,7 +8,7 @@ export interface TopBarProps {
 export default function TopBar({ onToggleSidebar }: TopBarProps) {
     return (
         <div className="top-bar">
-            <h1>Lorry Collection Load Tracker</h1>
+            <h1>Collection Tracker</h1>
             <HamburgerIcon className="hamburger-icon" onClick={onToggleSidebar} />
         </div>
     );
