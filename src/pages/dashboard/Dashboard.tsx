@@ -27,7 +27,7 @@ export default function Dashboard() {
     return (
         <div className="dashboard">
             <div className="dashboard-head">
-                <h2>Lorry Status</h2>
+                <h2>Lorry Statuses</h2>
                 <Button icon={PlusIcon} text="Add Lorry" onClick={handleAdd} />
             </div>
 
