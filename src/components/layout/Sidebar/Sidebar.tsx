@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 
+import { MdOutlineDashboardCustomize } from "react-icons/md";
+import { IoIosStats } from "react-icons/io";
+import { IoSettingsOutline } from "react-icons/io5";
+import { MdLogin } from "react-icons/md";
+
 export interface SidebarProps {
     isSidebarOpen: boolean;
 }
@@ -11,14 +16,38 @@ export default function Sidebar({ isSidebarOpen }: SidebarProps) {
             <ul>
                 <li>
                     <NavLink to="/" end>
-                        Dashboard
+                        <span className="icon">
+                            <MdOutlineDashboardCustomize />
+                        </span>
+                        <span className="label">Dashboard</span>
                     </NavLink>
                 </li>
+
                 <li>
-                    <NavLink to="/reports">Reports</NavLink>
+                    <NavLink to="/reports">
+                        <span className="icon">
+                            <IoIosStats />
+                        </span>
+                        <span className="label">Reports</span>
+                    </NavLink>
                 </li>
+
                 <li>
-                    <NavLink to="/settings">Settings</NavLink>
+                    <NavLink to="/settings">
+                        <span className="icon">
+                            <IoSettingsOutline />
+                        </span>
+                        <span className="label">Settings</span>
+                    </NavLink>
+                </li>
+
+                <li>
+                    <NavLink to="/login">
+                        <span className="icon">
+                            <MdLogin />
+                        </span>
+                        <span className="label">Login</span>
+                    </NavLink>
                 </li>
             </ul>
         </nav>
