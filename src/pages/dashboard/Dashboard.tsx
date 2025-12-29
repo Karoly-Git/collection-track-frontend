@@ -3,7 +3,7 @@ import Button from "../../components/ui/button/Button";
 import { GoPlus as PlusIcon } from "react-icons/go";
 
 import Modal from "../../components/ui/modal/Modal";
-import LorryTable from "../../components/table/lorryTable/LorryTable";
+import LorryTable from "../../components/table/LorryTable/LorryTable";
 import AddLorryForm from "../../components/forms/addLorryForm/AddLorryForm";
 import type { LorryData } from "../../components/forms/addLorryForm/AddLorryForm";
 

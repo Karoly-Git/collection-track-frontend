@@ -1,34 +1,31 @@
 .current-status {
-    padding: 16px;
-
     .status-badge {
         display: inline-flex;
         align-items: center;
         padding: 6px 14px;
         border-radius: 10px;
-        font-size: 14px;
-        font-weight: 500;
+        font-weight: 600;
         line-height: 1;
         text-transform: capitalize;
 
         &.checked_in {
-            background-color: #dbeafe;
-            color: #1d4ed8;
+            background-color: #bfdbfe; // stronger blue
+            color: #1e40af;
         }
 
         &.loading_in_progress {
-            background-color: #fde3c2;
-            color: #92400e;
+            background-color: #fed7aa; // richer orange
+            color: #9a3412;
         }
 
         &.loaded {
-            background-color: #d1fadf;
-            color: #166534;
+            background-color: #bbf7d0; // vivid green
+            color: #14532d;
         }
 
         &.checked_out {
-            background-color: #e5e7eb;
-            color: #374151;
+            background-color: #d1d5db; // darker gray
+            color: #1f2937;
         }
     }
 }
