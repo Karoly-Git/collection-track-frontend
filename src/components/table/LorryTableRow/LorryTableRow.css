@@ -1,10 +1,32 @@
 .lorry-table-row {
-  /* ACTION COLUMN */
+  /* ======================
+     CLICKABLE CELL BUTTONS
+     ====================== */
+  /* ======================
+     ACTION COLUMN
+     ====================== */
 }
 .lorry-table-row td {
   padding: 1rem;
   vertical-align: middle;
   white-space: nowrap;
+}
+.lorry-table-row .cell-btn {
+  all: unset;
+  cursor: pointer;
+  font-size: 15px;
+  color: #111827;
+  display: inline-block;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.lorry-table-row .cell-btn:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lorry-table-row .cell-btn:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 .lorry-table-row .material-name {
   font-weight: 600;
@@ -12,6 +34,8 @@
 .lorry-table-row .collection-ref-number {
   text-transform: uppercase;
   font-family: monospace;
+  color: #6b7280;
+  font-size: 14px;
 }
 .lorry-table-row .action {
   display: flex;
@@ -20,37 +44,34 @@
   justify-content: flex-end;
 }
 .lorry-table-row .icon-btn {
+  all: unset;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  border: none;
-  background-color: transparent;
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
-  color: #6b7280;
   font-size: 18px;
+  color: #9ca3af;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
 }
 .lorry-table-row .icon-btn:hover {
   background-color: #f3f4f6;
+  color: #374151;
+}
+.lorry-table-row .icon-btn:active {
+  transform: scale(0.96);
 }
 .lorry-table-row .icon-btn:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid #6366f1;
   outline-offset: 2px;
-}
-.lorry-table-row .icon-btn.info {
-  color: green;
 }
 .lorry-table-row .icon-btn.info:hover {
   color: #2563eb;
-  background-color: white;
-}
-.lorry-table-row .icon-btn.delete {
-  color: red;
+  background-color: #e0ecff;
 }
 .lorry-table-row .icon-btn.delete:hover {
   color: #b91c1c;
-  background-color: white;
+  background-color: #fee2e2;
 }/*# sourceMappingURL=LorryTableRow.css.map */

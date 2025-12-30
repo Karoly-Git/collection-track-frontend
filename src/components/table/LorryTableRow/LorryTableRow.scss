@@ -5,6 +5,30 @@
         white-space: nowrap;
     }
 
+    /* ======================
+       CLICKABLE CELL BUTTONS
+       ====================== */
+
+    .cell-btn {
+        all: unset;
+        cursor: pointer;
+        font-size: 15px;
+        color: #111827;
+        display: inline-block;
+        transition: color 0.15s ease, text-decoration-color 0.15s ease;
+
+        &:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #6366f1;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+    }
+
     .material-name {
         font-weight: 600;
     }
@@ -12,9 +36,14 @@
     .collection-ref-number {
         text-transform: uppercase;
         font-family: monospace;
+        color: #6b7280;
+        font-size: 14px;
     }
 
-    /* ACTION COLUMN */
+    /* ======================
+       ACTION COLUMN
+       ====================== */
+
     .action {
         display: flex;
         gap: 0.5rem;
@@ -23,44 +52,43 @@
     }
 
     .icon-btn {
+        all: unset;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         width: 34px;
         height: 34px;
         border-radius: 8px;
-        border: none;
-        background-color: transparent;
         cursor: pointer;
-        transition: background-color 0.15s ease, color 0.15s ease;
-        color: #6b7280; // neutral gray
         font-size: 18px;
+        color: #9ca3af;
+        transition:
+            background-color 0.15s ease,
+            color 0.15s ease,
+            transform 0.1s ease;
 
         &:hover {
             background-color: #f3f4f6;
+            color: #374151;
+        }
+
+        &:active {
+            transform: scale(0.96);
         }
 
         &:focus-visible {
-            outline: 2px solid #2563eb;
+            outline: 2px solid #6366f1;
             outline-offset: 2px;
         }
 
-        &.info {
-            color: green;
-
-            &:hover {
-                color: #2563eb; // blue
-                background-color: white;
-            }
+        &.info:hover {
+            color: #2563eb;
+            background-color: #e0ecff;
         }
 
-        &.delete {
-            color: red;
-
-            &:hover {
-                color: #b91c1c; // red
-                background-color: white;
-            }
+        &.delete:hover {
+            color: #b91c1c;
+            background-color: #fee2e2;
         }
     }
 }

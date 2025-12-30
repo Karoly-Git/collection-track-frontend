@@ -10,14 +10,31 @@ interface LorryTableRowProps {
 }
 
 export default function LorryTableRow({ lorry }: LorryTableRowProps) {
-    const [userLoggedIn, setUserLoggedIn] = useState<boolean>(true);
+    const [userLoggedIn] = useState<boolean>(true);
 
     const {
+        lorryId,
         materialName,
         customerName,
         collectionRefNum,
         currentStatus
     } = lorry;
+
+    /* ====== CELL CLICK HANDLERS ====== */
+
+    function handleMaterialClick(lorryId: string): void {
+        console.log("Material clicked for lorry:", lorryId);
+    }
+
+    function handleCustomerClick(lorryId: string): void {
+        console.log("Customer clicked for lorry:", lorryId);
+    }
+
+    function handleCollectionRefClick(lorryId: string): void {
+        console.log("Collection ref clicked for lorry:", lorryId);
+    }
+
+    /* ====== ACTION ICON HANDLERS ====== */
 
     function handleInfoClick(lorryId: string): void {
         console.log("Info clicked for lorry:", lorryId);
@@ -29,20 +46,43 @@ export default function LorryTableRow({ lorry }: LorryTableRowProps) {
 
     return (
         <tr className="lorry-table-row">
-            <td className="material-name">{materialName}</td>
-            <td className="customer-name">{customerName}</td>
-            <td className="collection-ref-number">{collectionRefNum}</td>
+            <td>
+                <button
+                    className="cell-btn material-name"
+                    onClick={() => handleMaterialClick(lorryId)}
+                >
+                    {materialName}
+                </button>
+            </td>
+
+            <td>
+                <button
+                    className="cell-btn customer-name"
+                    onClick={() => handleCustomerClick(lorryId)}
+                >
+                    {customerName}
+                </button>
+            </td>
+
+            <td>
+                <button
+                    className="cell-btn collection-ref-number"
+                    onClick={() => handleCollectionRefClick(lorryId)}
+                >
+                    {collectionRefNum}
+                </button>
+            </td>
 
             <StatusBadge
                 currentStatus={currentStatus}
-                lorryId={lorry.lorryId}
+                lorryId={lorryId}
             />
 
             <td className="action">
                 <button
                     className="icon-btn info"
                     aria-label="View details"
-                    onClick={() => handleInfoClick(lorry.lorryId)}
+                    onClick={() => handleInfoClick(lorryId)}
                 >
                     <InfoIco />
                 </button>
@@ -51,7 +91,7 @@ export default function LorryTableRow({ lorry }: LorryTableRowProps) {
                     <button
                         className="icon-btn delete"
                         aria-label="Delete lorry"
-                        onClick={() => handleDeleteClick(lorry.lorryId)}
+                        onClick={() => handleDeleteClick(lorryId)}
                     >
                         <BinIco />
                     </button>

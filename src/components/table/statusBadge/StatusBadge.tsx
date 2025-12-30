@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import type { Lorry } from "../../../types/lorry";
 import "./StatusBadge.css";
 
@@ -6,7 +5,6 @@ interface StatusBadgeProps {
     currentStatus: Lorry["currentStatus"];
     lorryId: Lorry["lorryId"]
 }
-
 
 export default function StatusBadge({ currentStatus, lorryId }: StatusBadgeProps) {
     const formattedStatusText = currentStatus.toLowerCase().split("_").join(" ");
