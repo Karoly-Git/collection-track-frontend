@@ -12,6 +12,9 @@ interface LorryTableRowProps {
 
 export default function LorryTableRow({ lorry }: LorryTableRowProps) {
     const [userLoggedIn] = useState<boolean>(true);
+    const [lorryData, setLorryData] = useState<Lorry>();
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<Error | null>(null);
 
     const {
         lorryId,
@@ -38,12 +41,19 @@ export default function LorryTableRow({ lorry }: LorryTableRowProps) {
     /* ====== ACTION ICON HANDLERS ====== */
 
     function handleInfoClick(lorryId: string): void {
-        console.log("Info clicked for lorry:", lorryId);
+        console.log(lorryData);
     }
 
     function handleDeleteClick(lorryId: string): void {
         console.log("Delete clicked for lorry:", lorryId);
     }
+
+    useEffect(() => {
+        getLorryById(lorryId)
+            .then(setLorryData)
+            .catch(setError)
+            .finally(() => setLoading(false));
+    }, []);
 
     return (
         <tr className="lorry-table-row">
