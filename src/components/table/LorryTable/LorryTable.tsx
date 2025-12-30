@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react";
-import { getAllLorries } from "../../../api/lorries.api";
+import { useEffect } from "react";
 import LorryTableRow from "../LorryTableRow/LorryTableRow";
-import type { Lorry } from "../../../types/lorry";
-
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { fetchLorries } from "../../../store/lorries.slice";
 import "./LorryTable.css";
 
 export default function LorryTable() {
-    const [lorriesData, setLorriesData] = useState<Lorry[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<Error | null>(null);
+    const dispatch = useAppDispatch();
+
+    const { items: lorriesData, loading, error } = useAppSelector(
+        state => state.lorries
+    );
 
     useEffect(() => {
-        getAllLorries()
-            .then(setLorriesData)
-            .catch(setError)
-            .finally(() => setLoading(false));
-    }, []);
+        dispatch(fetchLorries());
+    }, [dispatch]);
 
     if (loading) return <p>Loading lorries…</p>;
-    if (error) return <p>Failed to load lorries</p>;
+    if (error) return <p>{error}</p>;
 
     return (
         <table>

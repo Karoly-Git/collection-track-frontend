@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import type { Lorry } from "../../../types/lorry";
 import StatusBadge from "../statusBadge/StatusBadge";
+import type { Lorry } from "../../../types/lorry";
 import { BsInfoCircle as InfoIco } from "react-icons/bs";
 import { RiDeleteBin2Line as BinIco } from "react-icons/ri";
-import { getLorryById } from "../../../api/lorries.api";
+import { useAppDispatch } from "../../../store/hooks";
+import { deleteLorryById } from "../../../store/lorries.slice";
 import "./LorryTableRow.css";
 
 interface LorryTableRowProps {
@@ -11,10 +11,8 @@ interface LorryTableRowProps {
 }
 
 export default function LorryTableRow({ lorry }: LorryTableRowProps) {
-    const [userLoggedIn] = useState<boolean>(true);
-    const [lorryData, setLorryData] = useState<Lorry>();
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<Error | null>(null);
+    const dispatch = useAppDispatch();
+    const userLoggedIn = true;
 
     const {
         lorryId,
@@ -24,62 +22,30 @@ export default function LorryTableRow({ lorry }: LorryTableRowProps) {
         currentStatus
     } = lorry;
 
-    /* ====== CELL CLICK HANDLERS ====== */
-
-    function handleMaterialClick(lorryId: string): void {
-        console.log("Material clicked for lorry:", lorryId);
-    }
-
-    function handleCustomerClick(lorryId: string): void {
-        console.log("Customer clicked for lorry:", lorryId);
-    }
-
-    function handleCollectionRefClick(lorryId: string): void {
-        console.log("Collection ref clicked for lorry:", lorryId);
-    }
-
-    /* ====== ACTION ICON HANDLERS ====== */
-
     function handleInfoClick(lorryId: string): void {
-        console.log(lorryData);
+        console.log("Info clicked for lorry:", lorryId);
     }
 
     function handleDeleteClick(lorryId: string): void {
-        console.log("Delete clicked for lorry:", lorryId);
+        dispatch(deleteLorryById(lorryId));
     }
-
-    useEffect(() => {
-        getLorryById(lorryId)
-            .then(setLorryData)
-            .catch(setError)
-            .finally(() => setLoading(false));
-    }, []);
 
     return (
         <tr className="lorry-table-row">
             <td>
-                <button
-                    className="cell-btn material-name"
-                    onClick={() => handleMaterialClick(lorryId)}
-                >
+                <button className="cell-btn material-name">
                     {materialName}
                 </button>
             </td>
 
             <td>
-                <button
-                    className="cell-btn customer-name"
-                    onClick={() => handleCustomerClick(lorryId)}
-                >
+                <button className="cell-btn customer-name">
                     {customerName}
                 </button>
             </td>
 
             <td>
-                <button
-                    className="cell-btn collection-ref-number"
-                    onClick={() => handleCollectionRefClick(lorryId)}
-                >
+                <button className="cell-btn collection-ref-number">
                     {collectionRefNum}
                 </button>
             </td>
