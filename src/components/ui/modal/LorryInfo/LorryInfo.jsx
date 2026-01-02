@@ -19,6 +19,7 @@ export default function LorryInfo({ lorry }) {
 
     return (
         <div className="lorry-info">
+            <div>Info Icon Placeholder</div>
             <h2>COLLECTION INFO</h2>
 
             <div className="lorry-details">
