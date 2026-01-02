@@ -5,15 +5,22 @@ import { RiDeleteBin2Line as BinIco } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { deleteLorryById } from "../../../state/lorry/lorrySlice";
 import { formatTime } from "../../../utils/formatTime";
+import { LORRY_STATUSES } from "../../../constants/lorry-statuses";
+
 import "./LorryTableRow.css";
+
 import Modal from "../../ui/modal/Modal";
 import LorryInfo from "../../ui/modal/LorryInfo/LorryInfo";
+import UpdateStatus from "../../ui/modal/UpdateStatus/UpdateStatus";
 
 export default function LorryTableRow({ lorry }) {
     const dispatch = useDispatch();
     const userLoggedIn = true;
 
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+    const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
+
+    const handleStatusClose = () => setIsStatusModalOpen(false);
 
     const {
         lorryId,
@@ -36,7 +43,13 @@ export default function LorryTableRow({ lorry }) {
         console.log("Reference number clicked for lorry:", lorryId);
     }
 
+    function handleStatusClick() {
+        if (LORRY_STATUSES.CHECKED_OUT === currentStatus) return;
+        setIsStatusModalOpen(true)
+    }
+
     function handleInfoClick() {
+        currentStatus
         setIsInfoModalOpen(true)
     }
 
@@ -85,6 +98,7 @@ export default function LorryTableRow({ lorry }) {
                 <StatusBadge
                     currentStatus={currentStatus}
                     lorryId={lorryId}
+                    onClick={handleStatusClick}
                 />
 
                 <td className="action">
@@ -112,6 +126,11 @@ export default function LorryTableRow({ lorry }) {
                 <td>
                     <Modal isOpen={isInfoModalOpen} onClose={handleInfoClose}>
                         <LorryInfo lorry={lorry} />
+                    </Modal>
+                </td>
+                <td>
+                    <Modal isOpen={isStatusModalOpen} onClose={handleStatusClose}>
+                        <UpdateStatus lorry={lorry} />
                     </Modal>
                 </td>
             </tr>

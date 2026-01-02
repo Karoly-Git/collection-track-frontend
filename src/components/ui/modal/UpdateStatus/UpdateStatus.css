@@ -1,0 +1,61 @@
+.update-status {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 280px;
+}
+.update-status h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.update-status label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #555;
+}
+.update-status select {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  cursor: pointer;
+}
+.update-status select:focus {
+  outline: none;
+  border-color: #2d7ef7;
+  box-shadow: 0 0 0 1px rgba(45, 126, 247, 0.2);
+}
+.update-status .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.update-status .actions .btn {
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.update-status .actions .btn.cancel {
+  background: transparent;
+  color: #555;
+}
+.update-status .actions .btn.cancel:hover {
+  background: #f2f2f2;
+}
+.update-status .actions .btn.update {
+  background: #2d7ef7;
+  color: #fff;
+}
+.update-status .actions .btn.update:hover:not(:disabled) {
+  background: #1f69d3;
+}
+.update-status .actions .btn.update:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}/*# sourceMappingURL=UpdateStatus.css.map */
