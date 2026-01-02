@@ -4,6 +4,7 @@ import { BsInfoCircle as InfoIco } from "react-icons/bs";
 import { RiDeleteBin2Line as BinIco } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { deleteLorryById } from "../../../state/lorry/lorrySlice";
+import { formatTime } from "../../../utils/formatTime";
 import "./LorryTableRow.css";
 import Modal from "../../ui/modal/Modal";
 import LorryInfo from "../../ui/modal/LorryInfo/LorryInfo";
@@ -57,7 +58,7 @@ export default function LorryTableRow({ lorry }) {
                         <div>{materialName}</div>
                     </button>
                     <div className="time-checked-in">
-                        {new Date(checkedInAt).toLocaleTimeString('en-GB', { timeStyle: 'short' })}
+                        {formatTime(checkedInAt)}
                     </div>
                 </td>
 

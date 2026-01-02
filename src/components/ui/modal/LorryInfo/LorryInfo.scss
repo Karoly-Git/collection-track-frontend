@@ -1,0 +1,153 @@
+.lorry-info {
+    --bg: #ffffff;
+    --card-bg: #f9fafb;
+    --border: #e5e7eb;
+    --text: #000000;
+    --muted: #6b7280;
+
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 720px;
+
+
+    h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+
+    h3 {
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 24px 0 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    /* ===== Summary Card ===== */
+    .lorry-details {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px;
+
+        p {
+            margin: 0;
+            font-size: 0.9rem;
+
+            strong {
+                display: block;
+                font-size: 0.75rem;
+                font-weight: 500;
+                margin-bottom: 2px;
+            }
+        }
+    }
+
+    /* ===== Timeline ===== */
+    .status-history {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        .status-entry {
+            position: relative;
+            padding: 16px 16px 16px 28px;
+            margin-bottom: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 10px;
+                top: 20px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #9ca3af;
+            }
+
+            strong {
+                font-size: 0.95rem;
+                font-weight: 600;
+            }
+
+            .timestamp {
+                display: block;
+                font-size: 0.75rem;
+                margin-top: 2px;
+            }
+
+            .updated-by {
+                font-size: 0.75rem;
+                margin-top: 4px;
+            }
+
+            /* ===== Comments ===== */
+            .comments {
+                margin-top: 12px;
+                padding-left: 0;
+                list-style: none;
+
+                li {
+                    background: #ffffff;
+                    border: 1px solid var(--border);
+                    border-radius: 8px;
+                    padding: 8px 10px;
+                    margin-bottom: 6px;
+
+                    em {
+                        display: block;
+                        font-size: 0.85rem;
+                        font-style: normal;
+                    }
+
+                    .comment-meta {
+                        margin-top: 2px;
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+
+            /* ===== Status colours ===== */
+            &.CHECKED_IN {
+                border-left: 4px solid #22c55e;
+
+                &::before {
+                    background: #22c55e;
+                }
+            }
+
+            &.LOADING_IN_PROGRESS {
+                border-left: 4px solid #f59e0b;
+                background-color: red;
+
+                &::before {
+                    background: #f59e0b;
+                }
+            }
+
+            &.LOADED {
+                border-left: 4px solid #3b82f6;
+
+                &::before {
+                    background: #3b82f6;
+                }
+            }
+
+            &.CHECKED_OUT {
+                border-left: 4px solid #9ca3af;
+
+                &::before {
+                    background: #9ca3af;
+                }
+            }
+        }
+    }
+}

@@ -1,11 +1,7 @@
+import { formatText } from "../../../utils/formatText";
 import "./StatusBadge.css";
 
 export default function StatusBadge({ currentStatus, lorryId }) {
-    const formattedStatusText = currentStatus
-        .toLowerCase()
-        .split("_")
-        .join(" ");
-
     const statusClass = currentStatus.toLowerCase();
 
     function handleBadgeClick(lorryId) {
@@ -19,7 +15,7 @@ export default function StatusBadge({ currentStatus, lorryId }) {
                 className={`status-badge ${statusClass}`}
                 onClick={() => handleBadgeClick(lorryId)}
             >
-                {formattedStatusText}
+                {formatText(currentStatus)}
             </button>
         </td>
     );
