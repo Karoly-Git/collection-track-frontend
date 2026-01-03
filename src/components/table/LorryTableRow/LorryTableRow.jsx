@@ -20,8 +20,6 @@ export default function LorryTableRow({ lorry }) {
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
     const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
 
-    const handleStatusClose = () => setIsStatusModalOpen(false);
-
     const {
         lorryId,
         materialName,
@@ -47,6 +45,8 @@ export default function LorryTableRow({ lorry }) {
         if (LORRY_STATUSES.CHECKED_OUT === currentStatus) return;
         setIsStatusModalOpen(true)
     }
+
+    const handleStatusClose = () => setIsStatusModalOpen(false);
 
     function handleInfoClick() {
         currentStatus
@@ -130,7 +130,7 @@ export default function LorryTableRow({ lorry }) {
                 </td>
                 <td>
                     <Modal isOpen={isStatusModalOpen} onClose={handleStatusClose}>
-                        <UpdateStatus lorry={lorry} />
+                        <UpdateStatus lorry={lorry} onCancel={handleStatusClose} />
                     </Modal>
                 </td>
             </tr>
