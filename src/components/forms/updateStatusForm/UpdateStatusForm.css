@@ -1,46 +1,92 @@
 .update-status-form {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   min-width: 280px;
+  /* ---------- Status preview ---------- */
+  /* ---------- Actions ---------- */
 }
 .update-status-form h3 {
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
+  color: #222;
 }
-.update-status-form label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #555;
+.update-status-form .status-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-radius: 8px;
+  background: #f8f9fb;
 }
-.update-status-form select {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  background-color: #fff;
-  cursor: pointer;
+.update-status-form .status-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  /* ---------- Badge (shared colors) ---------- */
 }
-.update-status-form select:focus {
-  outline: none;
-  border-color: #2d7ef7;
-  box-shadow: 0 0 0 1px rgba(45, 126, 247, 0.2);
+.update-status-form .status-row .label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #777;
+}
+.update-status-form .status-row .badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: capitalize;
+  cursor: default;
+  /* no interaction effects in preview */
+  box-shadow: none;
+  transform: none;
+  /* --- STATUS COLORS (copied verbatim) --- */
+}
+.update-status-form .status-row .badge.checked_in {
+  background-color: #bfdbfe;
+  color: #1e40af;
+}
+.update-status-form .status-row .badge.loading_in_progress {
+  background-color: #fed7aa;
+  color: #9a3412;
+}
+.update-status-form .status-row .badge.loaded {
+  background-color: #bbf7d0;
+  color: #14532d;
+}
+.update-status-form .status-row .badge.checked_out {
+  background-color: #d1d5db;
+  color: #1f2937;
+}
+.update-status-form .arrow {
+  font-size: 1.25rem;
+  color: #999;
+  margin-top: 0.9rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .update-status-form .actions {
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
-  margin-top: 0.5rem;
 }
 .update-status-form .actions .btn {
-  padding: 0.45rem 1rem;
+  padding: 0.45rem 1.1rem;
   font-size: 0.85rem;
-  border-radius: 4px;
-  cursor: pointer;
+  border-radius: 6px;
   border: none;
-  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+.update-status-form .actions .btn:active {
+  transform: translateY(1px);
 }
 .update-status-form .actions .btn.cancel {
   background: transparent;
@@ -50,13 +96,9 @@
   background: #f2f2f2;
 }
 .update-status-form .actions .btn.update {
-  background: darkgreen;
+  background: #1f7a3f;
   color: #fff;
 }
-.update-status-form .actions .btn.update:hover:not(:disabled) {
-  background: #1f69d3;
-}
-.update-status-form .actions .btn.update:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.update-status-form .actions .btn.update:hover {
+  background: #196533;
 }/*# sourceMappingURL=UpdateStatusForm.css.map */
