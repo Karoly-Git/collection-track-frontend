@@ -29,4 +29,7 @@
   cursor: pointer;
   color: #6b7280;
   z-index: 2;
+}
+.modal-close-btn:hover {
+  font-weight: bold;
 }/*# sourceMappingURL=Modal.css.map */

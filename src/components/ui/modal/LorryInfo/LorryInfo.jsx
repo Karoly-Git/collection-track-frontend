@@ -19,24 +19,16 @@ export default function LorryInfo({ lorry }) {
 
     return (
         <div className="lorry-info">
-            <div>Info Icon Placeholder</div>
             <h2>COLLECTION INFO</h2>
 
             <div className="lorry-details">
-                <p><strong>Lorry ID:</strong> {lorryId}</p>
-                <p><strong>Registration:</strong> {regNum}</p>
-                <p><strong>Material:</strong> {materialName}</p>
-                <p><strong>Customer:</strong> {customerName}</p>
-                <p><strong>Reference number:</strong> {collectionRefNum}</p>
-                <p><strong>Current status:</strong> {formatText(currentStatus)}</p>
-                <p>
-                    <strong>Checked In at:</strong>{" "}
-                    {checkedInAt ? formatTime(checkedInAt) : "-"}
-                </p>
-                <p>
-                    <strong>Checked Out at:</strong>{" "}
-                    {checkedOutAt ? formatTime(checkedOutAt) : "-"}
-                </p>
+                <p><strong>Material:</strong> <span>{materialName}</span></p>
+                <p><strong>Customer:</strong> <span>{customerName}</span></p>
+                <p><strong>Reference number:</strong> <span>{collectionRefNum}</span></p>
+                <p><strong>Registration number:</strong> <span>{regNum}</span></p>
+                <p><strong>Current status:</strong> <span>{formatText(currentStatus)}</span></p>
+                <p><strong>Checked In at:</strong> <span>{checkedInAt ? formatTime(checkedInAt) : "-"}</span></p>
+                <p><strong>Checked Out at:</strong> <span>{checkedOutAt ? formatTime(checkedOutAt) : "-"}</span></p>
             </div>
 
             <h3>Status History</h3>

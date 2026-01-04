@@ -34,4 +34,9 @@
 
     color: #6b7280;
     z-index: 2;
+
+
+    &:hover {
+        font-weight: bold;
+    }
 }

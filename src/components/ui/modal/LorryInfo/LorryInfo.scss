@@ -37,7 +37,11 @@
 
         p {
             margin: 0;
-            font-size: 0.9rem;
+
+            span {
+                text-transform: uppercase;
+                font-weight: bold;
+            }
 
             strong {
                 display: block;
@@ -62,16 +66,16 @@
             border: 1px solid var(--border);
             border-radius: 10px;
 
-            &::before {
-                content: "";
-                position: absolute;
-                left: 10px;
-                top: 20px;
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background: #9ca3af;
-            }
+            //            &::before {
+            //                content: "";
+            //                position: absolute;
+            //                left: 10px;
+            //                top: 20px;
+            //                width: 8px;
+            //                height: 8px;
+            //                border-radius: 50%;
+            //                background: #9ca3af;
+            //            }
 
             strong {
                 font-size: 0.95rem;
