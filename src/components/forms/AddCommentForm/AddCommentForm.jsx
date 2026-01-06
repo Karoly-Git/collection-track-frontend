@@ -13,6 +13,9 @@ export default function AddCommentForm({ lorryId, onCancel }) {
     };
     return (
         <form className="add-comment-form" onSubmit={handleSubmit}>
+            <textarea
+                placeholder="Write your comment here..."
+            />
             <div className="actions">
                 <button
                     type="button"
@@ -23,10 +26,9 @@ export default function AddCommentForm({ lorryId, onCancel }) {
                 </button>
 
                 <button type="submit" className="btn update">
-                    Add Comment
+                    Save
                 </button>
             </div>
-
         </form>
     )
 }

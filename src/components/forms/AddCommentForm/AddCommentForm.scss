@@ -11,6 +11,10 @@
         color: #222;
     }
 
+    textarea {
+        resize: vertical;
+    }
+
     /* ---------- Actions ---------- */
     .actions {
         display: flex;

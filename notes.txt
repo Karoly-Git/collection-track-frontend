@@ -1,0 +1,3 @@
+Delet icon should not delete it immadiatelly, should ask for confirmation.
+Or if deleted, then save it as new status: deleted.
+

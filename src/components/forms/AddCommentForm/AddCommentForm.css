@@ -11,6 +11,9 @@
   font-weight: 600;
   color: #222;
 }
+.add-comment-form textarea {
+  resize: vertical;
+}
 .add-comment-form .actions {
   display: flex;
   justify-content: flex-end;
