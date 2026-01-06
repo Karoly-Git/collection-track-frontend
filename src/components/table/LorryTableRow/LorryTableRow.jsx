@@ -12,6 +12,7 @@ import "./LorryTableRow.css";
 import Modal from "../../ui/modal/Modal";
 import LorryInfo from "../../ui/modal/LorryInfo/LorryInfo";
 import UpdateStatusForm from "../../forms/updateStatusForm/UpdateStatusForm";
+import DeleteLorryForm from "../../forms/DeleteLorryForm.jsx/DeleteLorryForm";
 
 export default function LorryTableRow({ lorry }) {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function LorryTableRow({ lorry }) {
 
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
     const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     const {
         lorryId,
@@ -29,23 +31,16 @@ export default function LorryTableRow({ lorry }) {
         currentStatus,
     } = lorry;
 
-    function handleStatusClick() {
-        //if (LORRY_STATUSES.CHECKED_OUT === currentStatus) return;
-        setIsStatusModalOpen(true)
-    }
+    const handleStatusClick = () => setIsStatusModalOpen(true)
+    const handleInfoClick = () => setIsInfoModalOpen(true);
+    const handleDeleteClick = () => setIsDeleteModalOpen(true);
+    //const handleDeleteClick = (lorryId) => dispatch(deleteLorryById(lorryId));
+
 
     const handleStatusClose = () => setIsStatusModalOpen(false);
-
-    function handleInfoClick() {
-        currentStatus
-        setIsInfoModalOpen(true)
-    }
-
     const handleInfoClose = () => setIsInfoModalOpen(false);
+    const handleDeleteClose = () => setIsDeleteModalOpen(false);
 
-    function handleDeleteClick(lorryId) {
-        dispatch(deleteLorryById(lorryId));
-    }
 
     return (
         <>
@@ -116,6 +111,11 @@ export default function LorryTableRow({ lorry }) {
                 <td>
                     <Modal isOpen={isStatusModalOpen} onClose={handleStatusClose}>
                         <UpdateStatusForm lorry={lorry} onCancel={handleStatusClose} />
+                    </Modal>
+                </td>
+                <td>
+                    <Modal isOpen={isDeleteModalOpen} onClose={handleDeleteClose}>
+                        <DeleteLorryForm lorry={lorry} onCancel={handleDeleteClose} />
                     </Modal>
                 </td>
             </tr>
