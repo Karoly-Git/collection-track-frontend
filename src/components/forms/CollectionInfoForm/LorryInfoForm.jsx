@@ -8,7 +8,7 @@ import { FaCommentSlash as DontAddCommentIcon } from 'react-icons/fa6';
 import { formatText } from '../../../utils/formatText';
 import { formatTime } from '../../../utils/formatTime';
 
-export default function LorryInfoForm({ lorry }) {
+export default function LorryInfoForm({ lorry, onCancel }) {
     if (!lorry) return null;
 
     const {
@@ -151,6 +151,15 @@ export default function LorryInfoForm({ lorry }) {
                     );
                 })}
             </ul>
+            <div className="actions">
+                <button
+                    type="button"
+                    className="btn cancel"
+                    onClick={onCancel}
+                >
+                    Close
+                </button>
+            </div>
         </section>
     );
 }

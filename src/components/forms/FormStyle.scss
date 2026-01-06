@@ -67,11 +67,9 @@
             }
 
             &.cancel {
-                background: transparent;
-                color: #555;
 
                 &:hover {
-                    background: #f2f2f2;
+                    background: rgb(218, 218, 218);
                 }
             }
 

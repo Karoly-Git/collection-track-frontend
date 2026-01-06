@@ -32,7 +32,7 @@ export default function Dashboard() {
             <LorryTable />
 
             <Modal isOpen={isAddModalOpen} onClose={handleAddClose}>
-                <AddLorryForm onSubmit={handleAddFormSubmit} />
+                <AddLorryForm onSubmit={handleAddFormSubmit} onCancel={handleAddClose} />
             </Modal>
         </div>
     );

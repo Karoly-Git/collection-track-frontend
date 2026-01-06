@@ -58,12 +58,8 @@
 .form .actions .btn:active {
   transform: translateY(1px);
 }
-.form .actions .btn.cancel {
-  background: transparent;
-  color: #555;
-}
 .form .actions .btn.cancel:hover {
-  background: #f2f2f2;
+  background: rgb(218, 218, 218);
 }
 .form .actions .btn.update {
   background: #1f7a3f;

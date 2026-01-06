@@ -171,4 +171,7 @@
 }
 .collection-info-form .status-entry.CHECKED_OUT .status-header strong {
   color: #9ca3af;
+}
+.collection-info-form .actions {
+  margin-bottom: 1rem;
 }/*# sourceMappingURL=LorryInfoForm.css.map */

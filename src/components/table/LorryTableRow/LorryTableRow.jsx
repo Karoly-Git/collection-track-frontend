@@ -105,7 +105,7 @@ export default function LorryTableRow({ lorry }) {
             <tr>
                 <td>
                     <Modal isOpen={isInfoModalOpen} onClose={handleInfoClose}>
-                        <LorryInfoForm lorry={lorry} />
+                        <LorryInfoForm lorry={lorry} onCancel={handleInfoClose} />
                     </Modal>
                 </td>
                 <td>
