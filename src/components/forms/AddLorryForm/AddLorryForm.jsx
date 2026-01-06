@@ -35,19 +35,10 @@ export default function AddLorryForm({ onSubmit, onCancel }) {
 
     return (
         <form className="form add-lorry-form" onSubmit={handleSubmit}>
-            <h3>Add New Lorry</h3>
+            <h3>Check In New Collection</h3>
 
             <label>
-                Lorry Registration Number (optional)
-                <input
-                    type="text"
-                    value={regNum}
-                    onChange={(e) => setRegNum(e.target.value)}
-                />
-            </label>
-
-            <label>
-                Material Name
+                Material
                 <select
                     value={materialName}
                     onChange={(e) => setMaterialName(e.target.value)}
@@ -66,7 +57,7 @@ export default function AddLorryForm({ onSubmit, onCancel }) {
             </label>
 
             <label>
-                Customer Name
+                Customer
                 <select
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
@@ -85,7 +76,7 @@ export default function AddLorryForm({ onSubmit, onCancel }) {
             </label>
 
             <label>
-                Collection Reference Number
+                Reference number
                 <input
                     type="text"
                     value={collectionRefNum}
@@ -93,6 +84,16 @@ export default function AddLorryForm({ onSubmit, onCancel }) {
                     required
                 />
             </label>
+
+            <label>
+                Lorry reg number (optional)
+                <input
+                    type="text"
+                    value={regNum}
+                    onChange={(e) => setRegNum(e.target.value)}
+                />
+            </label>
+
 
             <label>
                 Updated By (User ID)
