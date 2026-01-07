@@ -88,7 +88,7 @@ export default function AddCollectionForm({ onSubmit, onCancel }) {
             </label>
 
             <label>
-                Lorry reg number (optional)
+                Vehicle reg number (optional)
                 <input
                     type="text"
                     value={regNum}
