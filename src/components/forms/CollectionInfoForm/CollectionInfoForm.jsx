@@ -2,6 +2,7 @@ import { useState } from 'react';
 import "../FormStyle.css";
 import './CollectionInfoForm.css';
 import AddCommentForm from '../AddCommentForm/AddCommentForm';
+import Button from "../../ui/button/Button";
 
 import { FaCommentMedical as AddCommentIcon } from 'react-icons/fa6';
 import { FaCommentSlash as DontAddCommentIcon } from 'react-icons/fa6';
@@ -152,13 +153,12 @@ export default function CollectionInfoForm({ lorry, onCancel }) {
                 })}
             </ul>
             <div className="actions">
-                <button
+                <Button
                     type="button"
-                    className="btn cancel"
+                    text="Close"
+                    className="btn reject"
                     onClick={onCancel}
-                >
-                    Close
-                </button>
+                />
             </div>
         </section>
     );

@@ -1,4 +1,5 @@
 import "../FormStyle.css";
+import Button from "../../ui/button/Button";
 
 export default function AddCommentForm({ lorryId, onCancel }) {
 
@@ -17,17 +18,18 @@ export default function AddCommentForm({ lorryId, onCancel }) {
                 placeholder="Write your comment here..."
             />
             <div className="actions">
-                <button
+                <Button
                     type="button"
-                    className="btn cancel"
+                    text="Cancel"
+                    className="btn reject"
                     onClick={onCancel}
-                >
-                    Cancel
-                </button>
+                />
 
-                <button type="submit" className="btn update">
-                    Save
-                </button>
+                <Button
+                    type="submit"
+                    text="Add Comment"
+                    className="btn accept"
+                />
             </div>
         </form>
     )

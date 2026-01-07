@@ -9,4 +9,6 @@ What if the status acidentally changed? How to redo it?
 
 Would be more logical to call collection info instead of lorry info
 
+No button in td where no need
+
 

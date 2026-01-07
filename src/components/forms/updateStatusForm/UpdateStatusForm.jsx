@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { COLLECTION_STATUSES } from "../../../constants/collection-statuses";
 import { formatText } from "../../../utils/formatText";
 import { updateLorryStatusById } from "../../../state/lorry/lorrySlice";
+import Button from "../../ui/button/Button";
 
 import "../FormStyle.css";
 import "./UpdateStatusForm.css";
@@ -26,13 +27,12 @@ export default function UpdateStatusForm({ lorry, onCancel }) {
                 <p>No further status updates available.</p>
 
                 <div className="actions">
-                    <button
+                    <Button
                         type="button"
-                        className="btn cancel"
+                        text="Cancel"
+                        className="btn reject"
                         onClick={onCancel}
-                    >
-                        Close
-                    </button>
+                    />
                 </div>
             </div>
         );
@@ -90,17 +90,18 @@ export default function UpdateStatusForm({ lorry, onCancel }) {
 
 
             <div className="actions">
-                <button
+                <Button
                     type="button"
-                    className="btn cancel"
+                    text="Cancel"
+                    className="btn reject"
                     onClick={onCancel}
-                >
-                    Cancel
-                </button>
+                />
 
-                <button type="submit" className="btn update">
-                    Update
-                </button>
+                <Button
+                    type="submit"
+                    text="Update Status"
+                    className="btn accept"
+                />
             </div>
         </form>
     );

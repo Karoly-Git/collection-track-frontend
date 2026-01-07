@@ -1,9 +1,17 @@
 import "./Button.css";
 
-export default function Button({ icon: Icon, text, onClick }) {
+export default function Button({
+    icon: Icon,
+    type,
+    text,
+    className,
+    onClick }) {
     return (
-        <button className="button" onClick={onClick}>
-            {Icon && <Icon />} {text}
+        <button
+            type={type}
+            className={`button ${className}`}
+            onClick={onClick}>
+            {Icon && <Icon className="icon" />} {text}
         </button>
     );
 }

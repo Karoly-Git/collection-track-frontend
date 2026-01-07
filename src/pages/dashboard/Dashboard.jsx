@@ -25,7 +25,12 @@ export default function Dashboard() {
             <div className="dashboard-head">
                 <h2>Collection Overview</h2>
                 {userLoggedIn && (
-                    <Button icon={PlusIcon} text="Add Collection" onClick={handleAddClick} />
+                    <Button
+                        icon={PlusIcon}
+                        text="Add Collection"
+                        className="btn add"
+                        onClick={handleAddClick}
+                    />
                 )}
             </div>
 

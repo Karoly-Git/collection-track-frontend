@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { CUSTOMER_NAMES } from "../../../constants/customer-names";
 import { MATERIAL_NAMES } from "../../../constants/material-names";
+import Button from "../../ui/button/Button";
+
 import "../FormStyle.css";
 
 export default function AddCollectionForm({ onSubmit, onCancel }) {
@@ -115,17 +117,18 @@ export default function AddCollectionForm({ onSubmit, onCancel }) {
             </label>
 
             <div className="actions">
-                <button
+                <Button
                     type="button"
-                    className="btn cancel"
+                    text="Cancel"
+                    className="btn reject"
                     onClick={onCancel}
-                >
-                    Cancel
-                </button>
+                />
 
-                <button type="submit" className="btn update">
-                    Add Collection
-                </button>
+                <Button
+                    type="submit"
+                    text="Add Collection"
+                    className="btn accept"
+                />
             </div>
         </form>
     );
