@@ -57,7 +57,7 @@ export const updateCollectionStatusById = createAsyncThunk(
                 comment,
             });
 
-            // 🔥 backend already returns full updated collection
+            // backend already returns full updated collection
             return updatedCollection;
         } catch (error) {
             return rejectWithValue(error.message);

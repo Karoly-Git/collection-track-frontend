@@ -44,9 +44,9 @@ export default function UpdateStatusForm({ collection, onCancel }) {
         try {
             await dispatch(
                 updateCollectionStatusById({
-                    collectionId: collection.collectionId,
+                    collectionId: collection.id,
                     status: nextStatus,
-                    userId: "exampleUserId",
+                    userId: "9999", // This should come from auth state
                     comment: `Status updated from ${currentStatus} to ${nextStatus}`,
                 })
             ).unwrap();

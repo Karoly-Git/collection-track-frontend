@@ -42,22 +42,24 @@ export const updateCollectionStatus = async ({
     userId,
     comment,
 }) => {
-    const response = await fetch(`${API_URL}/collections/${collectionId}/status`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            status,
-            updatedBy: { userId },
-            comment,
-        }),
-    });
+    const response = await fetch(
+        `${API_URL}/collections/${collectionId}/status`,
+        {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                status, // REQUIRED
+                updatedByUserId: userId, // REQUIRED
+                comment: comment || "", // OPTIONAL
+            }),
+        }
+    );
 
     if (!response.ok) {
-        throw new Error(
-            `Failed to update status for collection with ID ${collectionId} (${response.status})`
-        );
+        const error = await response.json();
+        throw new Error(error.message || "Failed to update status");
     }
 
     return response.json();

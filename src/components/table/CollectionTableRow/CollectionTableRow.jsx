@@ -21,7 +21,7 @@ export default function CollectionTableRow({ collection }) {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     const {
-        collectionId,
+        id,
         materialName,
         customerName,
         collectionRefNum,
@@ -74,7 +74,7 @@ export default function CollectionTableRow({ collection }) {
 
                 <StatusBadge
                     currentStatus={currentStatus}
-                    collectionId={collectionId}
+                    collectionId={id}
                     onClick={handleStatusClick}
                 />
 
@@ -91,7 +91,7 @@ export default function CollectionTableRow({ collection }) {
                         <button
                             className="icon-btn delete"
                             aria-label="Delete collection"
-                            onClick={() => handleDeleteClick(collectionId)}
+                            onClick={() => handleDeleteClick(id)}
                         >
                             <BinIco />
                         </button>
