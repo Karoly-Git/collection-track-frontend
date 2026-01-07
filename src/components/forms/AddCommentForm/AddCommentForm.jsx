@@ -1,15 +1,15 @@
 import "../FormStyle.css";
 import Button from "../../ui/button/Button";
 
-export default function AddCommentForm({ lorryId, onCancel }) {
+export default function AddCommentForm({ collectionId, onCancel }) {
 
     async function handleSubmit(e) {
         e.preventDefault();
         // Here you would typically gather form data and dispatch an action
-        // to add the comment to the lorry with the given lorryId.
+        // to add the comment to the collection with the given collectionId.
         // For example:
         // const comment = e.target.elements.comment.value;
-        // await dispatch(addCommentToLorry({ lorryId, comment }));
+        // await dispatch(addCommentToCollection({ collectionId, comment }));
         onCancel(); // Close the form after submission
     };
     return (

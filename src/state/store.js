@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import lorriesReducer from "./lorry/lorrySlice";
+import collectionReducer from "./collection/collectionSlice";
 
 export const store = configureStore({
     reducer: {
-        lorries: lorriesReducer,
+        collections: collectionReducer,
     },
 });

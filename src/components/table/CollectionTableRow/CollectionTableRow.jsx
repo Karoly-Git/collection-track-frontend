@@ -1,5 +1,5 @@
 import { useState } from "react";
-import StatusBadge from "../statusBadge/StatusBadge";
+import StatusBadge from "../StatusBadge/StatusBadge";
 import { BsInfoCircle as InfoIco } from "react-icons/bs";
 import { RiDeleteBin2Line as BinIco } from "react-icons/ri";
 import { useDispatch } from "react-redux";
@@ -12,7 +12,7 @@ import UpdateStatusForm from "../../forms/UpdateStatusForm/UpdateStatusForm";
 import CollectionInfoForm from "../../forms/CollectionInfoForm/CollectionInfoForm";
 import DeleteCollectionForm from "../../forms/DeleteCollectionForm.jsx/DeleteCollectionForm";
 
-export default function CollectionTableRow({ lorry }) {
+export default function CollectionTableRow({ collection }) {
     const dispatch = useDispatch();
     const userLoggedIn = true;
 
@@ -21,18 +21,17 @@ export default function CollectionTableRow({ lorry }) {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     const {
-        lorryId,
+        collectionId,
         materialName,
         customerName,
         collectionRefNum,
         checkedInAt,
         currentStatus,
-    } = lorry;
+    } = collection;
 
     const handleStatusClick = () => setIsStatusModalOpen(true)
     const handleInfoClick = () => setIsInfoModalOpen(true);
     const handleDeleteClick = () => setIsDeleteModalOpen(true);
-    //const handleDeleteClick = (lorryId) => dispatch(deleteLorryById(lorryId));
 
 
     const handleStatusClose = () => setIsStatusModalOpen(false);
@@ -75,7 +74,7 @@ export default function CollectionTableRow({ lorry }) {
 
                 <StatusBadge
                     currentStatus={currentStatus}
-                    lorryId={lorryId}
+                    collectionId={collectionId}
                     onClick={handleStatusClick}
                 />
 
@@ -83,7 +82,7 @@ export default function CollectionTableRow({ lorry }) {
                     <button
                         className="icon-btn info"
                         aria-label="View details"
-                        onClick={() => handleInfoClick(lorryId)}
+                        onClick={() => handleInfoClick(collection)}
                     >
                         <InfoIco />
                     </button>
@@ -91,8 +90,8 @@ export default function CollectionTableRow({ lorry }) {
                     {userLoggedIn && (
                         <button
                             className="icon-btn delete"
-                            aria-label="Delete lorry"
-                            onClick={() => handleDeleteClick(lorryId)}
+                            aria-label="Delete collection"
+                            onClick={() => handleDeleteClick(collectionId)}
                         >
                             <BinIco />
                         </button>
@@ -103,17 +102,17 @@ export default function CollectionTableRow({ lorry }) {
             <tr>
                 <td>
                     <Modal isOpen={isInfoModalOpen} onClose={handleInfoClose}>
-                        <CollectionInfoForm lorry={lorry} onCancel={handleInfoClose} />
+                        <CollectionInfoForm collection={collection} onCancel={handleInfoClose} />
                     </Modal>
                 </td>
                 <td>
                     <Modal isOpen={isStatusModalOpen} onClose={handleStatusClose}>
-                        <UpdateStatusForm lorry={lorry} onCancel={handleStatusClose} />
+                        <UpdateStatusForm collection={collection} onCancel={handleStatusClose} />
                     </Modal>
                 </td>
                 <td>
                     <Modal isOpen={isDeleteModalOpen} onClose={handleDeleteClose}>
-                        <DeleteCollectionForm lorry={lorry} onCancel={handleDeleteClose} />
+                        <DeleteCollectionForm collection={collection} onCancel={handleDeleteClose} />
                     </Modal>
                 </td>
             </tr>

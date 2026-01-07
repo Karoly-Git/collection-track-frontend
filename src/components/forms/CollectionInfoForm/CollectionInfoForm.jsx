@@ -9,8 +9,8 @@ import { FaCommentSlash as DontAddCommentIcon } from 'react-icons/fa6';
 import { formatText } from '../../../utils/formatText';
 import { formatTime } from '../../../utils/formatTime';
 
-export default function CollectionInfoForm({ lorry, onCancel }) {
-    if (!lorry) return null;
+export default function CollectionInfoForm({ collection, onCancel }) {
+    if (!collection) return null;
 
     const {
         materialName,
@@ -21,7 +21,7 @@ export default function CollectionInfoForm({ lorry, onCancel }) {
         checkedOutAt,
         currentStatus,
         statusHistory
-    } = lorry;
+    } = collection;
 
     // store which status entry has the comment form open
     const [activeStatusTimestamp, setActiveStatusTimestamp] = useState(null);
@@ -51,7 +51,7 @@ export default function CollectionInfoForm({ lorry, onCancel }) {
                         <span>{collectionRefNum}</span>
                     </p>
                     <p>
-                        <strong>Lorry reg number</strong>
+                        <strong>Vehicle reg number</strong>
                         <span>{regNum}</span>
                     </p>
                     <p>

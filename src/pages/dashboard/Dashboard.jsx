@@ -15,8 +15,8 @@ export default function Dashboard() {
     const handleAddClick = () => setIsAddModalOpen(true);
     const handleAddClose = () => setIsAddModalOpen(false);
 
-    const handleAddFormSubmit = (lorryData) => {
-        console.log("New Lorry Added:", lorryData);
+    const handleAddFormSubmit = (collectionData) => {
+        console.log("New Collection Added:", collectionData);
         setIsAddModalOpen(false);
     };
 

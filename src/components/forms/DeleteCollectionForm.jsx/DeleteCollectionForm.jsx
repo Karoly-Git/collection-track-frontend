@@ -2,7 +2,7 @@ import "../FormStyle.css";
 import "./DeleteCollectionForm.css";
 import Button from "../../ui/button/Button";
 
-export default function DeleteCollectionForm({ lorry, onCancel }) {
+export default function DeleteCollectionForm({ collection, onCancel }) {
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -10,8 +10,8 @@ export default function DeleteCollectionForm({ lorry, onCancel }) {
         onCancel(); // Close the form after submission
     }
 
-    const materialName = lorry?.materialName;
-    const collectionRefNum = lorry?.collectionRefNum;
+    const materialName = collection?.materialName;
+    const collectionRefNum = collection?.collectionRefNum;
 
     return (
         <form className="form delete-collection-form" onSubmit={handleSubmit}>

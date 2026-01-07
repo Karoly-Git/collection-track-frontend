@@ -1,17 +1,17 @@
 import { useDispatch } from "react-redux";
 import { COLLECTION_STATUSES } from "../../../constants/collection-statuses";
 import { formatText } from "../../../utils/formatText";
-import { updateLorryStatusById } from "../../../state/lorry/lorrySlice";
+import { updateCollectionStatusById } from "../../../state/collection/collectionSlice";
 import Button from "../../ui/button/Button";
 
 import "../FormStyle.css";
 import "./UpdateStatusForm.css";
 
-export default function UpdateStatusForm({ lorry, onCancel }) {
+export default function UpdateStatusForm({ collection, onCancel }) {
     const dispatch = useDispatch();
-    const currentStatus = lorry.currentStatus;
+    const currentStatus = collection.currentStatus;
 
-    const usedStatuses = lorry.statusHistory.map(
+    const usedStatuses = collection.statusHistory.map(
         (entry) => entry.status
     );
 
@@ -23,7 +23,7 @@ export default function UpdateStatusForm({ lorry, onCancel }) {
     if (!nextStatus) {
         return (
             <div className="form update-status-form">
-                <h2>Lorry has checked out</h2>
+                <h2>Collection has checked out</h2>
                 <p>No further status updates available.</p>
 
                 <div className="actions">
@@ -43,8 +43,8 @@ export default function UpdateStatusForm({ lorry, onCancel }) {
 
         try {
             await dispatch(
-                updateLorryStatusById({
-                    lorryId: lorry.lorryId,
+                updateCollectionStatusById({
+                    collectionId: collection.collectionId,
                     status: nextStatus,
                     userId: "exampleUserId",
                     comment: `Status updated from ${currentStatus} to ${nextStatus}`,
@@ -53,7 +53,7 @@ export default function UpdateStatusForm({ lorry, onCancel }) {
 
             onCancel();
         } catch (error) {
-            console.error("Failed to update lorry status:", error);
+            console.error("Failed to update collection status:", error);
             alert("Failed to update status. Please try again.");
         }
     }

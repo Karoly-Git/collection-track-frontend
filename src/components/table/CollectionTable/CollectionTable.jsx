@@ -1,33 +1,33 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllLorries } from "../../../state/lorry/lorrySlice";
-import "./CollectionTable.css";
+import { fetchAllCollections } from "../../../state/collection/collectionSlice";
 import CollectionTableRow from "../CollectionTableRow/CollectionTableRow";
+import "./CollectionTable.css";
 
 export default function CollectionTable() {
     const dispatch = useDispatch();
 
-    const { items: lorriesList, loading, error } = useSelector(
-        (state) => state.lorries
+    const { items: collectionsList, loading, error } = useSelector(
+        (state) => state.collections
     );
 
     useEffect(() => {
-        dispatch(fetchAllLorries());
+        dispatch(fetchAllCollections());
     }, [dispatch]);
 
-    if (loading) return <p>Loading lorries…</p>;
+    if (loading) return <p>Loading collections…</p>;
     if (error) return <p>{error}</p>;
 
     return (
         <>
-            {lorriesList.length === 0 && (
+            {collectionsList.length === 0 && (
                 <div className="no-collection-msg">
                     <div className="icon">🚚</div>
                     <h2>No collections on site</h2>
                     <p>All clear for now. New arrivals will appear here.</p>
                 </div>
             )}
-            {lorriesList.length !== 0 && (
+            {collectionsList.length !== 0 && (
                 <table className="collection-table" >
                     <thead>
                         <tr>
@@ -39,10 +39,10 @@ export default function CollectionTable() {
                     </thead>
                     <tbody>
 
-                        {lorriesList.map((lorry) => (
+                        {collectionsList.map((collection) => (
                             <CollectionTableRow
-                                key={lorry.lorryId}
-                                lorry={lorry}
+                                key={collection.id}
+                                collection={collection}
                             />
                         ))}
                     </tbody>

@@ -1,7 +1,7 @@
 import { formatText } from "../../../utils/formatText";
 import "./StatusBadge.css";
 
-export default function StatusBadge({ currentStatus, lorryId, onClick }) {
+export default function StatusBadge({ currentStatus, collectionId, onClick }) {
     const statusClass = currentStatus.toLowerCase();
 
     return (
