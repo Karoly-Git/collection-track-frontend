@@ -78,7 +78,7 @@ export default function CollectionInfoForm({ collection, onCancel }) {
 
                     return (
                         <li
-                            key={`${entry} + ${i}`}
+                            key={`${entry} + ${i}` + Math.random()}
                             className={`status-entry ${entry.status}`}
                         >
                             {/* Status header */}
@@ -136,8 +136,7 @@ export default function CollectionInfoForm({ collection, onCancel }) {
                                     .toReversed()
                                     .map((comment) => (
                                         <li
-                                            key={
-                                                comment.id}
+                                            key={comment.id + Math.random()}
                                         >
                                             <em>{comment.text}</em>
                                             <div className="comment-meta">

@@ -18,7 +18,7 @@ export default function AddCommentForm({
 
         if (!text.trim()) return;
 
-        console.log(collectionId, statusKey, userId, text);
+        //console.log(collectionId, statusKey, userId, text);
 
         const result = dispatch(
             addCommentToStatus({
