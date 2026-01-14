@@ -13,10 +13,10 @@ export default function AddCommentForm({
     const dispatch = useDispatch();
     const [text, setText] = useState("");
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
         if (!text.trim()) return;
-        await dispatch(
+        dispatch(
             addCommentToCollectionStatus({
                 collectionId,
                 statusKey,
