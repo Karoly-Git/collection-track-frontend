@@ -7,6 +7,8 @@ import { fetchAllCollections } from "../../../state/collection/collectionSlice";
 
 // Components
 import CollectionTableRow from "../CollectionTableRow/CollectionTableRow";
+import ErrorState from "../../ui/error/ErrorState";
+import LoadingState from "../../ui/loading/LoadingState";
 
 // Styles
 import "./CollectionTable.css";
@@ -22,8 +24,24 @@ export default function CollectionTable() {
         dispatch(fetchAllCollections());
     }, [dispatch]);
 
-    if (loading) return <p>Loading collections…</p>;
-    if (error) return <p>{error}</p>;
+    if (loading) {
+        return (
+            <LoadingState
+                title="Loading collections"
+                message="Checking for the latest collections…"
+            />
+        );
+    }
+    if (error) {
+        return (
+            <ErrorState
+                title="Failed to load collections"
+                message="We couldn't load collections from the server. Please check your connection or try again."
+                actionLabel="Retry"
+                onAction={() => dispatch(fetchAllCollections())}
+            />
+        );
+    }
 
     return (
         <>
