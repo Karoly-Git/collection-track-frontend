@@ -1,7 +1,7 @@
 .collection-info-form {
     --bg: #ffffff;
     --card: #f9fafb;
-    --border: #e5e7eb;
+    --border: #c2c2c2;
     --text: #111827;
     --muted: #6b7280;
     --accent: #2563eb;
@@ -26,6 +26,7 @@
 
     /* ===== COLLECTION SUMMARY ===== */
     .collection-details {
+        margin-top: 1rem;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 16px;
@@ -75,7 +76,7 @@
         transition: transform 0.15s ease, box-shadow 0.15s ease;
 
         &:hover {
-            transform: translateY(-1px);
+            //transform: translateY(-1px);
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
         }
 
@@ -172,41 +173,25 @@
 
     .status-entry.CHECKED_IN {
         &::before {
-            background: #22c55e;
-        }
-
-        .status-header strong {
-            color: #22c55e;
+            background: #bfdbfe;
         }
     }
 
     .status-entry.LOADING_IN_PROGRESS {
         &::before {
-            background: #f59e0b;
-        }
-
-        .status-header strong {
-            color: #f59e0b;
+            background: #fed7aa;
         }
     }
 
     .status-entry.LOADED {
         &::before {
-            background: #3b82f6;
-        }
-
-        .status-header strong {
-            color: #3b82f6;
+            background: #bbf7d0;
         }
     }
 
     .status-entry.CHECKED_OUT {
         &::before {
-            background: #9ca3af;
-        }
-
-        .status-header strong {
-            color: #9ca3af;
+            background: #d1d5db;
         }
     }
 

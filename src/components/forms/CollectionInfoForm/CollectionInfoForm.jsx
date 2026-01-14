@@ -8,6 +8,7 @@ import { FaCommentMedical as AddCommentIcon } from 'react-icons/fa6';
 import { FaCommentSlash as DontAddCommentIcon } from 'react-icons/fa6';
 import { formatText } from '../../../utils/formatText';
 import { formatTime } from '../../../utils/formatTime';
+import StatusBadge from '../../table/StatusBadge/StatusBadge';
 
 export default function CollectionInfoForm({ collection, onCancel }) {
     if (!collection) return null;
@@ -37,6 +38,7 @@ export default function CollectionInfoForm({ collection, onCancel }) {
         <section className="form collection-info-form">
             <header className="collection-header">
                 <h2>Collection Info</h2>
+                <StatusBadge currentStatus={currentStatus} isDiv={true} />
 
                 <div className="collection-details">
                     <p>
@@ -84,7 +86,9 @@ export default function CollectionInfoForm({ collection, onCancel }) {
                             {/* Status header */}
                             <div className="status-header">
                                 <strong className="status-title">
-                                    {formatText(entry.status)}
+                                    {/*formatText(entry.status)*/}
+                                    <StatusBadge currentStatus={entry.status} isDiv={true} />
+
                                 </strong>
                                 <span className="timestamp">
                                     {formatTime(entry.timestamp)}

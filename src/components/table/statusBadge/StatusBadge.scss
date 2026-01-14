@@ -73,3 +73,10 @@
         margin-right: 10px;
     }
 }
+
+.span-current-status {
+    .status-badge {
+        cursor: default;
+        pointer-events: none;
+    }
+}

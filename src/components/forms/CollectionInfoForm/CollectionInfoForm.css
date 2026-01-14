@@ -1,7 +1,7 @@
 .collection-info-form {
   --bg: #ffffff;
   --card: #f9fafb;
-  --border: #e5e7eb;
+  --border: #c2c2c2;
   --text: #111827;
   --muted: #6b7280;
   --accent: #2563eb;
@@ -25,6 +25,7 @@
   color: var(--muted);
 }
 .collection-info-form .collection-details {
+  margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
@@ -72,7 +73,6 @@
   /* ===== COMMENTS ===== */
 }
 .collection-info-form .status-entry:hover {
-  transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
 }
 .collection-info-form .status-entry::before {
@@ -149,28 +149,16 @@
   color: var(--muted);
 }
 .collection-info-form .status-entry.CHECKED_IN::before {
-  background: #22c55e;
-}
-.collection-info-form .status-entry.CHECKED_IN .status-header strong {
-  color: #22c55e;
+  background: #bfdbfe;
 }
 .collection-info-form .status-entry.LOADING_IN_PROGRESS::before {
-  background: #f59e0b;
-}
-.collection-info-form .status-entry.LOADING_IN_PROGRESS .status-header strong {
-  color: #f59e0b;
+  background: #fed7aa;
 }
 .collection-info-form .status-entry.LOADED::before {
-  background: #3b82f6;
-}
-.collection-info-form .status-entry.LOADED .status-header strong {
-  color: #3b82f6;
+  background: #bbf7d0;
 }
 .collection-info-form .status-entry.CHECKED_OUT::before {
-  background: #9ca3af;
-}
-.collection-info-form .status-entry.CHECKED_OUT .status-header strong {
-  color: #9ca3af;
+  background: #d1d5db;
 }
 .collection-info-form .actions {
   margin-bottom: 1rem;
