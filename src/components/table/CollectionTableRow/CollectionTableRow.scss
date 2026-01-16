@@ -52,44 +52,4 @@
         align-items: center;
         justify-content: flex-end;
     }
-
-    .icon-btn {
-        all: unset;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 34px;
-        height: 34px;
-        border-radius: 8px;
-        cursor: pointer;
-        color: #9ca3af;
-        transition:
-            background-color 0.15s ease,
-            color 0.15s ease,
-            transform 0.1s ease;
-
-        &:hover {
-            background-color: #f3f4f6;
-            color: #374151;
-        }
-
-        &:active {
-            transform: scale(0.96);
-        }
-
-        &:focus-visible {
-            outline: 2px solid #6366f1;
-            outline-offset: 2px;
-        }
-
-        &.info:hover {
-            color: #2563eb;
-            background-color: #e0ecff;
-        }
-
-        &.delete:hover {
-            color: #b91c1c;
-            background-color: #fee2e2;
-        }
-    }
 }

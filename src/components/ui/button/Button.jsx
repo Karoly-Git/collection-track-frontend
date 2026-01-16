@@ -1,8 +1,8 @@
 import "./Button.css";
 
 export default function Button({
-    icon: Icon,
     type,
+    icon: Icon,
     text,
     className,
     onClick }) {

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import Button from "../../components/ui/button/Button";
 import { GoPlus as PlusIcon } from "react-icons/go";
 
@@ -7,37 +8,96 @@ import "./Dashboard.css";
 import Modal from "../../components/ui/modal/Modal";
 import CollectionTable from "../../components/table/CollectionTable/CollectionTable";
 import AddCollectionForm from "../../components/forms/AddCollectionForm/AddCollectionForm";
+import CollectionInfoForm from "../../components/forms/CollectionInfoForm/CollectionInfoForm";
+
+import { openModal, closeModal } from "../../state/collection/modalSlice";
 
 export default function Dashboard() {
-    const [userLoggedIn] = useState(true);
-    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const userLoggedIn = true;
 
-    const handleAddClick = () => setIsAddModalOpen(true);
-    const handleAddClose = () => setIsAddModalOpen(false);
+    const dispatch = useDispatch();
+
+    const activeModal = useSelector((state) => state.modal.activeModal);
+
+    const handleOpenModal = (name) => {
+        dispatch(openModal({ name }));
+    };
+
+    const handleCloseModal = () => {
+        dispatch(closeModal());
+    };
 
     const handleAddFormSubmit = (collectionData) => {
         console.log("New Collection Added:", collectionData);
-        setIsAddModalOpen(false);
+
+        // Close only if UX requires it
+        dispatch(closeModal());
     };
 
     return (
         <div className="dashboard">
             <div className="dashboard-head">
                 <h2>Collection Overview</h2>
+
                 {userLoggedIn && (
                     <Button
                         icon={PlusIcon}
                         text="Add Collection"
                         className="btn add"
-                        onClick={handleAddClick}
+                        onClick={() => handleOpenModal("add")}
                     />
                 )}
             </div>
 
             <CollectionTable />
 
-            <Modal isOpen={isAddModalOpen} onClose={handleAddClose}>
-                <AddCollectionForm onSubmit={handleAddFormSubmit} onCancel={handleAddClose} />
+            <Modal
+                isOpen={activeModal === "add"}
+                onReject={handleCloseModal}
+                onAccept={handleAddFormSubmit}
+                rejectBtnText={"Cancel"}
+                acceptBtnText={"Add Collection"}
+            >
+                {/*<AddCollectionForm
+                    onSubmit={handleAddFormSubmit}
+                    onCancel={handleCloseModal}
+                />*/}
+            </Modal>
+
+            <Modal
+                isOpen={activeModal === "delete"}
+                onReject={handleCloseModal}
+                onAccept={() => null}
+                rejectBtnText={"Cancel"}
+                acceptBtnText={"Delete Collection"}
+            >
+                {/**/}
+            </Modal>
+
+            <Modal
+                isOpen={activeModal === "info"}
+                onReject={handleCloseModal}
+                rejectBtnText={"Close"}
+            >
+                {/*<CollectionInfoForm
+                    collection={[]}
+                    onCancel={handleCloseModal}
+                />*/}
+            </Modal>
+
+            <Modal
+                isOpen={activeModal === "status"}
+                onReject={handleCloseModal}
+                onAccept={() => null}
+                rejectBtnText={"Cancel"}
+                acceptBtnText={"Update Status"}
+            >
+                {/*<UpdateStatusForm
+                            currentStatus={currentStatus}
+                            statusHistory={collection.statusHistory}
+                            collectionId={id}
+                            onCancel={handleStatusClose}
+                        />*/}
             </Modal>
         </div>
     );

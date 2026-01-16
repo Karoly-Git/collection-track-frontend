@@ -15,7 +15,10 @@ export default function AddCommentForm({
 
     async function handleSubmit(e) {
         e.preventDefault();
+        e.stopPropagation();
+
         if (!text.trim()) return;
+
         await dispatch(
             addCommentToCollectionStatus({
                 collectionId,
@@ -26,8 +29,6 @@ export default function AddCommentForm({
         );
 
         setText("");
-        // console.log(text)
-        // onCancel();
     }
 
     return (

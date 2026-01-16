@@ -10,6 +10,17 @@
 .btn:active {
   transform: translateY(1px);
 }
+.btn.transparent {
+  background: transparent;
+  box-shadow: none;
+  color: gray;
+}
+.btn.transparent .icon {
+  font-size: 1.25rem;
+}
+.btn.transparent:hover {
+  color: black;
+}
 .btn.add {
   background-color: #2978d0;
   display: flex;
