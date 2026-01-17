@@ -13,6 +13,7 @@ import CollectionInfoForm from "../../components/forms/CollectionInfoForm/Collec
 
 import { openModal, closeModal } from "../../state/collection/modalSlice";
 import UpdateStatusForm from "../../components/forms/updateStatusForm/UpdateStatusForm";
+import DeleteCollectionForm from "../../components/forms/DeleteCollectionForm.jsx/DeleteCollectionForm";
 
 export default function Dashboard() {
     const userLoggedIn = true;
@@ -68,12 +69,10 @@ export default function Dashboard() {
 
             <Modal
                 isOpen={activeModal === "delete"}
-                onReject={handleCloseModal}
-                onAccept={() => null}
-                rejectBtnText={"Cancel"}
-                acceptBtnText={"Delete Collection"}
+                onClose={handleCloseModal}
+                modalTitle="Delete Collection"
             >
-                {/**/}
+                <DeleteCollectionForm onCancel={handleCloseModal} />
             </Modal>
 
             <Modal

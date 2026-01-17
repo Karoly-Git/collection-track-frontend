@@ -1,8 +1,14 @@
 import "../FormStyle.css";
 import "./DeleteCollectionForm.css";
 import Button from "../../ui/button/Button";
+import { useSelector } from "react-redux";
 
-export default function DeleteCollectionForm({ collection, onCancel }) {
+export default function DeleteCollectionForm({ onCancel }) {
+    const collectionId = useSelector((state) => state.modal.clickedCollectionId);
+
+    const collection = useSelector((state) =>
+        state.collections.collections.find((c) => c.id === collectionId)
+    );
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -17,13 +23,14 @@ export default function DeleteCollectionForm({ collection, onCancel }) {
         <form className="form delete-collection-form" onSubmit={handleSubmit}>
 
             <div className="form-header">
-                <h2>Delete Collection</h2>
-                <p className="warning-text">
-                    Are you sure you want to delete this collection?
-                </p>
+                <h2 className="warning-text">Are you sure you want to delete this collection?</h2>
             </div>
 
             <div className="identifier">
+                <div className="identifier-row">
+                    <span className="label">ID:</span>
+                    <span className="value">{collectionId}</span>
+                </div>
                 <div className="identifier-row">
                     <span className="label">Material:</span>
                     <span className="value">{materialName}</span>

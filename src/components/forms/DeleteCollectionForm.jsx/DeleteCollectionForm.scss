@@ -3,25 +3,40 @@
     padding: 12px;
     margin: 16px 0;
     border-radius: 4px;
-}
 
-.identifier-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 6px;
-}
+    &-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
 
-.identifier-row .label {
-    font-weight: 600;
-    color: #555;
-}
+        .label {
+            font-family: monospace;
+            text-transform: uppercase;
+        }
 
-.identifier-row .value {
-    font-family: monospace;
-    text-transform: uppercase;
+        .value {
+            font-weight: 600;
+            font-family: monospace;
+            font-size: 1.15rem;
+            color: #555;
+            text-transform: uppercase;
+        }
+    }
 }
 
 .warning-text {
-    color: #b00020;
-    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+
+    background-color: #fff4f4;
+    color: #a40000;
+
+    border: 1px solid #f5b5b5;
+
+    font-weight: 600;
+    font-size: 0.9rem;
 }
