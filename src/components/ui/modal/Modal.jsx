@@ -1,6 +1,6 @@
 import "./Modal.css";
 
-export default function Modal({ isOpen, onClose, modalTitle, children }) {
+export default function Modal({ isOpen, modalTitle, children }) {
     if (!isOpen) return null;
 
     return (
