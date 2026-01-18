@@ -10,16 +10,17 @@
     border-radius: 16px;
     max-width: 760px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    padding-bottom: 1rem;
 
     h2 {
         margin-bottom: 16px;
+        text-transform: uppercase;
     }
 
     h3 {
-        font-size: 0.8rem;
+        font-size: 1rem;
         font-weight: 600;
         margin: 32px 0 16px;
-        text-transform: uppercase;
         letter-spacing: 0.08em;
         color: var(--muted);
     }
@@ -87,7 +88,7 @@
             left: 0;
             top: 16px;
             bottom: 16px;
-            width: 4px;
+            width: 5px;
             border-radius: 4px;
             background: var(--border);
         }

@@ -37,8 +37,7 @@ export default function CollectionInfoForm({ collection, onCancel }) {
     return (
         <section className="form collection-info-form">
             <header className="collection-header">
-                <h2>Collection Info</h2>
-                <StatusBadge currentStatus={currentStatus} isDiv={true} />
+                <h2>{materialName} • {customerName} • {id}</h2>
 
                 <div className="collection-details">
                     <p>

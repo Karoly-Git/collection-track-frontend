@@ -37,6 +37,19 @@ export default function Dashboard() {
         dispatch(closeModal());
     };
 
+    const collectionId = useSelector(
+        (state) => state.modal.clickedCollectionId
+    );
+
+    const { collections } = useSelector(
+        (state) => state.collections
+    );
+
+    const collection = collections.find(
+        (c) => c.id === collectionId
+    );
+
+
     return (
         <div className="dashboard">
             <div className="dashboard-head">
@@ -77,13 +90,12 @@ export default function Dashboard() {
 
             <Modal
                 isOpen={activeModal === "info"}
-                onReject={handleCloseModal}
-                rejectBtnText={"Close"}
+                modalTitle="Collection Info"
             >
-                {/*<CollectionInfoForm
-                    collection={[]}
+                <CollectionInfoForm
+                    collection={collection}
                     onCancel={handleCloseModal}
-                />*/}
+                />
             </Modal>
 
             <Modal
