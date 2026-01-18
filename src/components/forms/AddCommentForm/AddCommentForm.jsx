@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../FormStyle.css";
 import Button from "../../ui/button/Button";
 import { useDispatch } from "react-redux";
@@ -7,11 +7,16 @@ import { addCommentToCollectionStatus } from "../../../state/collection/collecti
 export default function AddCommentForm({
     collectionId,
     statusKey,
-    userId, // Will come from login later
+    userId,
     onCancel,
 }) {
     const dispatch = useDispatch();
     const [text, setText] = useState("");
+    const textareaRef = useRef(null);
+
+    useEffect(() => {
+        textareaRef.current?.focus();
+    }, []);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -34,6 +39,7 @@ export default function AddCommentForm({
     return (
         <form className="form add-comment-form" onSubmit={handleSubmit}>
             <textarea
+                ref={textareaRef}
                 placeholder="Write your comment here..."
                 value={text}
                 onChange={(e) => setText(e.target.value)}

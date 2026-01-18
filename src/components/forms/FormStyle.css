@@ -4,6 +4,7 @@
   gap: 2rem;
   min-width: 280px;
   /* ================= Header ================= */
+  /* Shared form controls (kept generic) */
   /* ================= Identifier ================= */
   /* ================= Actions ================= */
 }
@@ -11,7 +12,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  /* Shared form controls (kept generic) */
 }
 .form .form-header .warning-text {
   display: flex;
@@ -57,7 +57,7 @@
   color: #555;
   margin-left: 0.25rem;
 }
-.form .form-header label {
+.form label {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
@@ -65,9 +65,9 @@
   font-weight: 500;
   color: #333;
 }
-.form .form-header input,
-.form .form-header select,
-.form .form-header textarea {
+.form input,
+.form select,
+.form textarea {
   width: 100%;
   padding: 0.6rem 0.7rem;
   border-radius: 6px;
@@ -75,14 +75,14 @@
   font-size: 0.9rem;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
-.form .form-header input:focus,
-.form .form-header select:focus,
-.form .form-header textarea:focus {
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
   outline: none;
   border-color: #143757;
   box-shadow: 0 0 0 2px rgba(20, 55, 87, 0.15);
 }
-.form .form-header textarea {
+.form textarea {
   resize: vertical;
   min-height: 3rem;
 }

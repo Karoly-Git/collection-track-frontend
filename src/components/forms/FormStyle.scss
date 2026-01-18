@@ -64,41 +64,41 @@
             color: #555;
             margin-left: 0.25rem;
         }
+    }
 
-        /* Shared form controls (kept generic) */
-        label {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
+    /* Shared form controls (kept generic) */
+    label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
 
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #333;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #333;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: 0.6rem 0.7rem;
+
+        border-radius: 6px;
+        border: 1px solid #ccc;
+
+        font-size: 0.9rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+
+        &:focus {
+            outline: none;
+            border-color: #143757;
+            box-shadow: 0 0 0 2px rgba(20, 55, 87, 0.15);
         }
+    }
 
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 0.6rem 0.7rem;
-
-            border-radius: 6px;
-            border: 1px solid #ccc;
-
-            font-size: 0.9rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
-
-            &:focus {
-                outline: none;
-                border-color: #143757;
-                box-shadow: 0 0 0 2px rgba(20, 55, 87, 0.15);
-            }
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 3rem;
-        }
+    textarea {
+        resize: vertical;
+        min-height: 3rem;
     }
 
     /* ================= Identifier ================= */
