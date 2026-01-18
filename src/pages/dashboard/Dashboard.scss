@@ -1,10 +1,107 @@
-.dashboard-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.dashboard {
+    padding: 2rem;
 
-    h2 {
-        font-size: 2rem;
-        font-family: monospace;
+    /* =========================
+       Dashboard Header
+    ========================== */
+    &-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+
+        h2 {
+            font-size: 2rem;
+            font-family: monospace;
+            font-weight: 600;
+            color: #1f2328;
+        }
+
+        .btn.add {
+            white-space: nowrap;
+        }
+    }
+
+    /* =========================
+       Search Bar
+    ========================== */
+    &-search {
+        position: relative;
+        max-width: 420px;
+        margin-bottom: 2rem;
+
+        /* Search icon (left) */
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: #8c959f;
+            pointer-events: none;
+        }
+
+        /* Reset / clear button (right) */
+        .reset-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: none;
+
+            background-color: transparent;
+            color: #8c959f;
+            font-size: 1rem;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: background-color 0.15s ease, color 0.15s ease;
+
+            &:hover {
+                color: #1f2328;
+            }
+
+            &:focus {
+                outline: none;
+                box-shadow: 0 0 0 2px rgba(9, 105, 218, 0.3);
+            }
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 2.75rem 0.75rem 2.5rem; // space for icon + reset
+            font-size: 0.95rem;
+            font-family: inherit;
+
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+
+            background-color: #ffffff;
+            color: #1f2328;
+
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+            &::placeholder {
+                color: #8c959f;
+            }
+
+            &:focus {
+                outline: none;
+                border-color: #0969da;
+                box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
+            }
+
+            &:disabled {
+                background-color: #f6f8fa;
+                cursor: not-allowed;
+            }
+        }
     }
 }

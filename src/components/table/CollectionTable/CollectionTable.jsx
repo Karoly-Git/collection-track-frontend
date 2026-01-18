@@ -13,12 +13,22 @@ import LoadingState from "../../ui/loading/LoadingState";
 // Styles
 import "./CollectionTable.css";
 
-export default function CollectionTable() {
+export default function CollectionTable({ searchValue }) {
     const dispatch = useDispatch();
 
     const { collections: collectionsList, loading, error } = useSelector(
         (state) => state.collections
     );
+
+    const filteredCollections = collectionsList.filter((collection) => {
+
+        const searchLower = searchValue.toLowerCase();
+        return (
+            collection.materialName.toLowerCase().includes(searchLower) ||
+            collection.customerName.toLowerCase().includes(searchLower) ||
+            collection.collectionRefNum.toLowerCase().includes(searchLower)
+        );
+    });
 
     useEffect(() => {
         dispatch(fetchAllCollections());
@@ -45,15 +55,29 @@ export default function CollectionTable() {
 
     return (
         <>
-            {collectionsList.length === 0 && (
+            {/* No collections at all */}
+            {collectionsList.length === 0 && !loading && !error && (
                 <div className="no-collection-msg">
                     <div className="icon">🚚</div>
                     <h2>No collections on site</h2>
                     <p>All clear for now. New arrivals will appear here.</p>
                 </div>
             )}
-            {collectionsList.length !== 0 && (
-                <table className="collection-table" >
+
+            {/* No search results */}
+            {collectionsList.length > 0 && filteredCollections.length === 0 && searchValue && (
+                <div className="no-collection-msg">
+                    <div className="icon">🔍</div>
+                    <h2>No results found</h2>
+                    <p>
+                        No collections match "<strong>{searchValue}</strong>"
+                    </p>
+                </div>
+            )}
+
+            {/* Table */}
+            {filteredCollections.length > 0 && (
+                <table className="collection-table">
                     <thead>
                         <tr>
                             <th>Material</th>
@@ -63,15 +87,14 @@ export default function CollectionTable() {
                         </tr>
                     </thead>
                     <tbody>
-
-                        {collectionsList.map((collection) => (
+                        {filteredCollections.map((collection) => (
                             <CollectionTableRow
                                 key={collection.id}
                                 collection={collection}
                             />
                         ))}
                     </tbody>
-                </table >
+                </table>
             )}
         </>
     );

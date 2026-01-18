@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 import Button from "../../components/ui/button/Button";
 import { GoPlus as PlusIcon } from "react-icons/go";
@@ -17,6 +18,7 @@ import DeleteCollectionForm from "../../components/forms/DeleteCollectionForm.js
 
 export default function Dashboard() {
     const userLoggedIn = true;
+    const [inputValue, setInputValue] = useState("");
 
     const dispatch = useDispatch();
 
@@ -37,6 +39,10 @@ export default function Dashboard() {
         dispatch(closeModal());
     };
 
+    const handleResetSearch = () => {
+        setInputValue("");
+    };
+
     const collectionId = useSelector(
         (state) => state.modal.clickedCollectionId
     );
@@ -49,6 +55,13 @@ export default function Dashboard() {
         (c) => c.id === collectionId
     );
 
+    const handleInputChange = (e) => {
+        const value = e.target.value
+            .toLowerCase()
+            .replace(/\s{2,}/g, ' '); // only collapse 2+ spaces into 1
+
+        setInputValue(value);
+    };
 
     return (
         <div className="dashboard">
@@ -65,7 +78,29 @@ export default function Dashboard() {
                 )}
             </div>
 
-            <CollectionTable />
+            <div className="dashboard-search with-icon">
+                <span className="search-icon">🔍</span>
+
+                <input
+                    type="text"
+                    placeholder="Search collections…"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                />
+
+                {inputValue && (
+                    <button
+                        type="button"
+                        className="reset-btn"
+                        onClick={handleResetSearch}
+                        aria-label="Clear search"
+                    >
+                        ✕
+                    </button>
+                )}
+            </div>
+
+            <CollectionTable searchValue={inputValue} />
 
             <Modal
                 isOpen={activeModal === "add"}
