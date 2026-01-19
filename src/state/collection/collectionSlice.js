@@ -10,6 +10,9 @@ const initialState = {
     collections: [],
     loading: false,
     error: null,
+
+    addCommentLoading: false,
+    addCommentError: null,
 };
 
 /**
@@ -81,6 +84,15 @@ export const addCommentToCollectionStatus = createAsyncThunk(
         { rejectWithValue }
     ) => {
         try {
+            // ⏳ simulate slow API (3 seconds)
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+
+            // ❌ simulate failure (50% chance)
+            //if (Math.random() < 0.5) {
+            if (true) {
+                throw new Error("Simulated error: comment could not be added");
+            }
+
             const updatedCollection = await addCommentUnderStatus({
                 collectionId,
                 statusKey,
@@ -157,14 +169,13 @@ const collectionSlice = createSlice({
 
             /* ---------------- Add comment ---------------- */
             .addCase(addCommentToCollectionStatus.pending, (state) => {
-                state.loading = true;
-                state.error = null;
+                state.addCommentLoading = true;
+                state.addCommentError = null;
             })
             .addCase(addCommentToCollectionStatus.fulfilled, (state, action) => {
-                state.loading = false;
+                state.addCommentLoading = false;
 
                 const updatedCollection = action.payload;
-
                 const index = state.collections.findIndex(
                     (c) => c.id === updatedCollection.id
                 );
@@ -174,9 +185,9 @@ const collectionSlice = createSlice({
                 }
             })
             .addCase(addCommentToCollectionStatus.rejected, (state, action) => {
-                state.loading = false;
-                state.error =
-                    action.payload || "Failed to add comment to status";
+                state.addCommentLoading = false;
+                state.addCommentError =
+                    action.payload || "Something went wrong while adding the comment.";
             });
     },
 });
