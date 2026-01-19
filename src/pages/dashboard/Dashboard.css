@@ -3,33 +3,33 @@
   /* =========================
      Dashboard Header
   ========================== */
-  /* =========================
-     Search Bar
-  ========================== */
 }
-.dashboard-head {
+.dashboard .dashboard-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
 }
-.dashboard-head h2 {
+.dashboard .dashboard-head .dashboard-title {
   font-size: 2rem;
   font-family: monospace;
   font-weight: 600;
   color: #1f2328;
 }
-.dashboard-head .btn.add {
-  white-space: nowrap;
+.dashboard .dashboard-controls {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
-.dashboard-search {
+.dashboard .dashboard-controls .dashboard-search {
   position: relative;
   max-width: 420px;
-  margin-bottom: 2rem;
   /* Search icon (left) */
   /* Reset / clear button (right) */
 }
-.dashboard-search .search-icon {
+.dashboard .dashboard-controls .dashboard-search .search-icon {
   position: absolute;
   left: 14px;
   top: 50%;
@@ -38,7 +38,7 @@
   color: #8c959f;
   pointer-events: none;
 }
-.dashboard-search .reset-btn {
+.dashboard .dashboard-controls .dashboard-search .reset-btn {
   position: absolute;
   right: 10px;
   top: 50%;
@@ -56,17 +56,17 @@
   justify-content: center;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
-.dashboard-search .reset-btn:hover {
+.dashboard .dashboard-controls .dashboard-search .reset-btn:hover {
   color: #1f2328;
 }
-.dashboard-search .reset-btn:focus {
+.dashboard .dashboard-controls .dashboard-search .reset-btn:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(9, 105, 218, 0.3);
 }
-.dashboard-search input {
+.dashboard .dashboard-controls .dashboard-search input {
   width: 100%;
   padding: 0.75rem 2.75rem 0.75rem 2.5rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-family: inherit;
   border: 1px solid #d0d7de;
   border-radius: 8px;
@@ -74,18 +74,24 @@
   color: #1f2328;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.dashboard-search input::-moz-placeholder {
+.dashboard .dashboard-controls .dashboard-search input::-moz-placeholder {
   color: #8c959f;
 }
-.dashboard-search input::placeholder {
+.dashboard .dashboard-controls .dashboard-search input::placeholder {
   color: #8c959f;
 }
-.dashboard-search input:focus {
+.dashboard .dashboard-controls .dashboard-search input:focus {
   outline: none;
   border-color: #0969da;
   box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
 }
-.dashboard-search input:disabled {
+.dashboard .dashboard-controls .dashboard-search input:disabled {
   background-color: #f6f8fa;
   cursor: not-allowed;
+}
+.dashboard .dashboard-controls .dashboard-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
 }/*# sourceMappingURL=Dashboard.css.map */

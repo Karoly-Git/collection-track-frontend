@@ -20,6 +20,7 @@ import DeleteCollectionForm from "../../components/forms/DeleteCollectionForm.js
 export default function Dashboard() {
     const userLoggedIn = true;
     const [inputValue, setInputValue] = useState("");
+    const [showTodayOnly, setShowTodayOnly] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -67,48 +68,63 @@ export default function Dashboard() {
     return (
         <div className="dashboard">
             <div className="dashboard-head">
-                <h2>Collection Overview</h2>
+                <h2 className="dashboard-title">Collection Overview</h2>
 
                 {userLoggedIn && (
                     <Button
                         icon={PlusIcon}
-                        text="Add Collection"
+                        text="Add New Collection"
                         className="btn add"
                         onClick={() => handleOpenModal("add")}
                     />
                 )}
             </div>
 
-            <div className="dashboard-search">
-                <SearchIcon className="search-icon" />
+            <div className="dashboard-controls">
+                <div className="dashboard-search">
+                    <SearchIcon className="search-icon" />
 
-                <input
-                    type="text"
-                    placeholder="Search collections…"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                />
+                    <input
+                        type="text"
+                        placeholder="Search collections..."
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        disabled={!userLoggedIn}
+                    />
 
-                {inputValue && (
-                    <button
-                        type="button"
-                        className="reset-btn"
-                        onClick={handleResetSearch}
-                        aria-label="Clear search"
-                    >
-                        ✕
-                    </button>
-                )}
+                    {inputValue && (
+                        <button
+                            type="button"
+                            className="reset-btn"
+                            onClick={handleResetSearch}
+                            aria-label="Clear search input"
+                        >
+                            ✕
+                        </button>
+                    )}
+                </div>
+
+                <label className="dashboard-checkbox">
+                    <input
+                        type="checkbox"
+                        checked={showTodayOnly}
+                        onChange={(e) => setShowTodayOnly(e.target.checked)}
+                    />
+                    Today's collections only
+                </label>
             </div>
 
-            <CollectionTable searchValue={inputValue} />
+            <CollectionTable
+                searchValue={inputValue}
+                showTodayOnly={showTodayOnly}
+            />
 
             <Modal
                 isOpen={activeModal === "add"}
                 onReject={handleCloseModal}
                 onAccept={handleAddFormSubmit}
-                rejectBtnText={"Cancel"}
-                acceptBtnText={"Add Collection"}
+                rejectBtnText="Cancel"
+                acceptBtnText="Add Collection"
             >
                 {/*<AddCollectionForm
                     onSubmit={handleAddFormSubmit}
@@ -117,16 +133,18 @@ export default function Dashboard() {
             </Modal>
 
             <Modal
-                isOpen={activeModal === "delete"}
+                isOpen={activeModal === "status"}
                 onClose={handleCloseModal}
-                modalTitle="Delete Collection"
+                modalTitle="Update Collection Status"
             >
-                <DeleteCollectionForm onCancel={handleCloseModal} />
+                <UpdateStatusForm
+                    onCancel={handleCloseModal}
+                />
             </Modal>
 
             <Modal
                 isOpen={activeModal === "info"}
-                modalTitle="Collection Info"
+                modalTitle="Collection Details"
             >
                 <CollectionInfoForm
                     collection={collection}
@@ -135,13 +153,11 @@ export default function Dashboard() {
             </Modal>
 
             <Modal
-                isOpen={activeModal === "status"}
+                isOpen={activeModal === "delete"}
                 onClose={handleCloseModal}
-                modalTitle="Status Update"
+                modalTitle="Confirm Delete Collection"
             >
-                <UpdateStatusForm
-                    onCancel={handleCloseModal}
-                />
+                <DeleteCollectionForm onCancel={handleCloseModal} />
             </Modal>
         </div>
     );

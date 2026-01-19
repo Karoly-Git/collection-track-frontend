@@ -15,16 +15,31 @@ import "./CollectionTable.css";
 
 import { IoSearchSharp as SearchIcon } from "react-icons/io5";
 
-export default function CollectionTable({ searchValue }) {
+export default function CollectionTable({ searchValue, showTodayOnly }) {
     const dispatch = useDispatch();
 
     const { collections: collectionsList, loading, error } = useSelector(
         (state) => state.collections
     );
 
-    const filteredCollections = collectionsList.filter((collection) => {
+    const isToday = (dateString) => {
+        const today = new Date();
+        const date = new Date(dateString);
 
+        return (
+            date.getDate() === today.getDate() &&
+            date.getMonth() === today.getMonth() &&
+            date.getFullYear() === today.getFullYear()
+        );
+    };
+
+    const filteredCollections = collectionsList.filter((collection) => {
         const searchLower = searchValue.toLowerCase();
+
+        if (showTodayOnly && !isToday(collection.checkedInAt)) {
+            return false;
+        }
+
         return (
             collection.materialName.toLowerCase().includes(searchLower) ||
             collection.customerName.toLowerCase().includes(searchLower) ||
@@ -44,6 +59,7 @@ export default function CollectionTable({ searchValue }) {
             />
         );
     }
+
     if (error) {
         return (
             <ErrorState
@@ -57,7 +73,6 @@ export default function CollectionTable({ searchValue }) {
 
     return (
         <>
-            {/* No collections at all */}
             {collectionsList.length === 0 && !loading && !error && (
                 <div className="no-collection-msg">
                     <div className="icon">🚚</div>
@@ -66,18 +81,19 @@ export default function CollectionTable({ searchValue }) {
                 </div>
             )}
 
-            {/* No search results */}
-            {collectionsList.length > 0 && filteredCollections.length === 0 && searchValue && (
-                <div className="no-collection-msg">
-                    <SearchIcon className="icon" />
-                    <h2>No results found</h2>
-                    <p>
-                        No collections match "<strong>{searchValue}</strong>"
-                    </p>
-                </div>
-            )}
+            {collectionsList.length > 0 &&
+                filteredCollections.length === 0 &&
+                searchValue && (
+                    <div className="no-collection-msg">
+                        <SearchIcon className="icon" />
+                        <h2>No results found</h2>
+                        <p>
+                            No collections match "
+                            <strong>{searchValue}</strong>"
+                        </p>
+                    </div>
+                )}
 
-            {/* Table */}
             {filteredCollections.length > 0 && (
                 <table className="collection-table">
                     <thead>
