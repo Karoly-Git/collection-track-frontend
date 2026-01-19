@@ -7,7 +7,7 @@ import Button from "../../ui/button/Button";
 import { FaCommentMedical as AddCommentIcon } from 'react-icons/fa6';
 import { FaCommentSlash as DontAddCommentIcon } from 'react-icons/fa6';
 import { formatText } from '../../../utils/formatText';
-import { formatTime } from '../../../utils/formatTime';
+import { formatDateTime } from '../../../utils/formatDateTime';
 import StatusBadge from '../../table/StatusBadge/StatusBadge';
 
 export default function CollectionInfoForm({ collection, onCancel }) {
@@ -62,11 +62,11 @@ export default function CollectionInfoForm({ collection, onCancel }) {
                     </p>
                     <p>
                         <strong>Checked in at</strong>
-                        <span>{checkedInAt ? formatTime(checkedInAt) : '-'}</span>
+                        <span>{checkedInAt ? formatDateTime(checkedInAt, { date: true, time: true }) : '-'}</span>
                     </p>
                     <p>
                         <strong>Checked out at</strong>
-                        <span>{checkedOutAt ? formatTime(checkedOutAt) : '-'}</span>
+                        <span>{checkedOutAt ? formatDateTime(checkedOutAt, { date: true, time: true }) : '-'}</span>
                     </p>
                 </div>
             </header>
@@ -90,7 +90,7 @@ export default function CollectionInfoForm({ collection, onCancel }) {
 
                                 </strong>
                                 <span className="timestamp">
-                                    {formatTime(entry.timestamp)}
+                                    {formatDateTime(entry.timestamp, { time: true })}
                                 </span>
                             </div>
 
@@ -144,7 +144,7 @@ export default function CollectionInfoForm({ collection, onCancel }) {
                                             <em>{comment.text}</em>
                                             <div className="comment-meta">
                                                 {comment.userId} •{' '}
-                                                {formatTime(comment.timestamp)}
+                                                {formatDateTime(comment.timestamp, { time: true })}
                                             </div>
                                         </li>
                                     ))}

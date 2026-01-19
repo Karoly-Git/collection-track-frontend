@@ -12,7 +12,7 @@ import { BsInfoCircle as InfoIcon } from "react-icons/bs";
 import { RiDeleteBin2Line as BinIcon } from "react-icons/ri";
 
 // Utils
-import { formatTime } from "../../../utils/formatTime";
+import { formatDateTime } from "../../../utils/formatDateTime";
 
 // UI Components
 import Button from "../../ui/button/Button";
@@ -48,7 +48,7 @@ export default function CollectionTableRow({ collection }) {
                 </button>
 
                 <div className="time-checked-in">
-                    {formatTime(checkedInAt)}
+                    {formatDateTime(checkedInAt, { date: true, time: true })}
                 </div>
             </td>
 
