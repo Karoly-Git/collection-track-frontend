@@ -1,30 +1,45 @@
 ------------------------
 REFACTOR / RESTRUCTURE
 ------------------------
-    Move StatusBadge into UI
-    No button tag should be in the <td> where no need.
-    When adding comment, shouldn't re-load the table content.
-    Make component to Not result, Loading, Not found, etc messages.
+    ✔ Move StatusBadge into UI
+    ✔ No button tag should be in the <td> where no need.
+    ✔ Make reusable component to Not result, Loading, Not found, etc messages.
+    - When adding comment, shouldn't re-load the table content.
+    - Authentication
+    - Listening to server/database changes and update acordingly
+    - 
 
 
 ------------------------
-FUNCTIONALITIES
+FUNCTIONALITIES / UI
 ------------------------
-    What if the status just acidentally changed? How to redo it?
-    Authorisation on login. userId: "9999", // This should come from auth state
+    - What if the status just acidentally changed? How to redo it?
+    - Authorisation on login. userId: "9999", // This should come from auth state
+    - Lorry spent time plus indicator displayed in the table row:
+        / time <= 1h ==> green
+        / 1h <= time < 2h ==> yellow
+        / time >= 2h ==> red 
+    - Title popup when hovering elements/components
+    - From - To date picker as filter
+    - A-Z & Z-A order in collection table
+    - For status update: in progress, failed SystemMessages
+    - When adding comment in the info modal, disable concurens field/buttons
+    - In the info modal: option to amend the records
 
 
 ------------------------
 STYLES
 ------------------------
-    Makeform element styles global
-    Dark mode in the settings
+    ✔ Make form element styles global
+    - Dark mode in the settings
+    - Fix the side bar collaps on event when hamburger icon clicked
 
 
 ------------------------
 TO SETTINGS PAGE
 ------------------------
-    Today's collections only by default checked or not
-    Dark mode in the settings
+    - Today's collections checked by default or not
+    - Dark mode / Bright mode / Device default
+    - Do you want to get notifications, if lorry spent time exceeding 1h, 2h...
 
 
