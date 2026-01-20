@@ -25,7 +25,6 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  /* Status colors */
 }
 .collection-table-row .cell-content.timer .indicator {
   width: 15px;
@@ -37,18 +36,6 @@
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1;
-}
-.collection-table-row .cell-content.timer .green {
-  background-color: #2ecc71;
-  color: #2ecc71;
-}
-.collection-table-row .cell-content.timer .yellow {
-  background-color: #f1c40f;
-  color: #f1c40f;
-}
-.collection-table-row .cell-content.timer .red {
-  background-color: #e74c3c;
-  color: #e74c3c;
 }
 .collection-table-row .material-name {
   font-weight: 600;

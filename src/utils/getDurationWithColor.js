@@ -30,7 +30,7 @@ export const getDurationWithColor = (startTime) => {
     if (durationHours <= 1) {
         color = "green";
     } else if (durationHours < 2) {
-        color = "yellow";
+        color = "blue";
     } else {
         color = "red";
     }

@@ -4,10 +4,9 @@ REFACTOR / RESTRUCTURE
     ✔ Move StatusBadge into UI
     ✔ No button tag should be in the <td> where not needed.
     ✔ Make reusable component for No result, Loading, Not found, etc. messages.
+    ✔ getDurationWithColor: make it scalable and able to choose as many intervals and colors as needed (+ integrate color style in JSX)
     - Authentication
     - Listening to server/database changes and update accordingly
-    - getDurationWithColor: make it scalable to be able to choose as many intervals and colors as needed (integrate color style in JSX)
-    - Make status badge colors global => easy to scale/change
 
 
 ------------------------
@@ -15,13 +14,13 @@ FUNCTIONALITIES / UI / UX
 ------------------------
     ✔ System message if no match to filter options. At this moment, the message is displayed only if no match to the searching value.
     ✔ A-Z & Z-A order in collection table
-    - What if the status just accidentally changed? How to redo it?
-    - Authorisation on login. userId: "9999", // This should come from auth state
     ✔ Lorry spent time plus indicator displayed in the table row:
         / time <= 1h ==> green
         / 1h <= time < 2h ==> yellow
         / time >= 2h ==> red 
     ✔ Add a "filter reset button" to set all filters back to default.
+    - What if the status just accidentally changed? How to redo it?
+    - Authorisation on login. userId: "9999", // This should come from auth state
     - Under the badge, display the spent time of that status.
     - For status update: in-progress, failed SystemMessages
     - When adding comment in the info modal, disable concurrent fields/buttons
@@ -35,6 +34,7 @@ FUNCTIONALITIES / UI / UX
 STYLES
 ------------------------
     ✔ Make form element styles global
+    - Make status badge colors global => easy to scale/change
     - Dark mode in the settings
     - Fix the sidebar collapse on event when hamburger icon is clicked
 

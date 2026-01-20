@@ -73,13 +73,15 @@ export default function CollectionTableRow({ collection }) {
         ? getDurationWithColor(checkedInAt)
         : { time: "--:--", color: null };
 
+    const indicatorStyle = { backgroundColor: color };
+
     return (
         <tr className="collection-table-row">
             {/* Timer */}
             <td>
                 <div className="cell-content timer">
                     {showLiveTimer && (
-                        <span className={`indicator ${color}`}></span>
+                        <span className="indicator" style={indicatorStyle}></span>
                     )}
                     <span className={`time ${!showLiveTimer ? "muted" : ""}`}>
                         {time}
