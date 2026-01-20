@@ -18,18 +18,23 @@
         }
     }
 
+    /* =========================
+       Controls (Search + Filters)
+    ========================== */
     .dashboard-controls {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         flex-wrap: wrap;
         gap: 1rem;
         margin-bottom: 2rem;
 
+        /* -------------------------
+           Search box
+        -------------------------- */
         .dashboard-search {
             position: relative;
             max-width: 420px;
 
-            /* Search icon (left) */
             .search-icon {
                 position: absolute;
                 left: 14px;
@@ -40,7 +45,6 @@
                 pointer-events: none;
             }
 
-            /* Reset / clear button (right) */
             .reset-btn {
                 position: absolute;
                 right: 10px;
@@ -75,7 +79,7 @@
 
             input {
                 width: 100%;
-                padding: 0.75rem 2.75rem 0.75rem 2.5rem; // space for icon + reset
+                padding: 0.75rem 2.75rem 0.75rem 2.5rem;
                 font-size: 1rem;
                 font-family: inherit;
 
@@ -104,12 +108,128 @@
             }
         }
 
-        .dashboard-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            //font-size: 0.9rem;
-            cursor: pointer;
+        /* =========================
+   Status Filter Chips
+========================= */
+
+        .status-filters {
+            gap: 0.75rem;
         }
+
+        .status-chip {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+
+            input {
+                position: absolute;
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .chip-label {
+                padding: 0.45rem 0.8rem;
+                border-radius: 999px;
+
+                font-size: 0.85rem;
+                font-weight: 600;
+
+                border: 1px solid #d0d7de;
+                background-color: #ffffff;
+                color: #24292f;
+
+                cursor: pointer;
+                user-select: none;
+
+                transition:
+                    background-color 0.15s ease,
+                    border-color 0.15s ease,
+                    color 0.15s ease,
+                    box-shadow 0.15s ease,
+                    transform 0.05s ease;
+            }
+
+            &:hover .chip-label {
+                background-color: #f6f8fa;
+            }
+
+            &:active .chip-label {
+                transform: scale(0.96);
+            }
+
+            /* =========================
+       ACTIVE STATE – DEFAULT
+    ========================= */
+            /* =========================
+   INACTIVE (UNCHECKED) STATE
+========================= */
+            &:not(.active) .chip-label {
+                color: #8c959f;
+            }
+
+            &.active .chip-label {
+                box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+            }
+
+            /* =========================
+       STATUS COLORS (MATCH BADGES)
+    ========================= */
+
+            /* =========================
+   TODAY ONLY – BLUE
+========================= */
+            &.today-only.active .chip-label {
+                background-color: #0969da;
+                border-color: #0969da;
+                color: #ffffff;
+
+                &:hover {
+                    background-color: #0550ae;
+                    border-color: #0550ae;
+                }
+            }
+
+
+            &.status-checked_in.active .chip-label {
+                background-color: #bfdbfe;
+                color: #1e40af;
+                border-color: #93c5fd;
+
+                &:hover {
+                    background-color: #93c5fd;
+                }
+            }
+
+            &.status-loading_in_progress.active .chip-label {
+                background-color: #fed7aa;
+                color: #9a3412;
+                border-color: #fdba74;
+
+                &:hover {
+                    background-color: #fdba74;
+                }
+            }
+
+            &.status-loaded.active .chip-label {
+                background-color: #bbf7d0;
+                color: #14532d;
+                border-color: #86efac;
+
+                &:hover {
+                    background-color: #86efac;
+                }
+            }
+
+            &.status-checked_out.active .chip-label {
+                background-color: #d1d5db;
+                color: #1f2937;
+                border-color: #9ca3af;
+
+                &:hover {
+                    background-color: #9ca3af;
+                }
+            }
+        }
+
     }
 }

@@ -12,19 +12,35 @@ import CollectionTable from "../../components/table/CollectionTable/CollectionTa
 import AddCollectionForm from "../../components/forms/AddCollectionForm/AddCollectionForm";
 import CollectionInfoForm from "../../components/forms/CollectionInfoForm/CollectionInfoForm";
 
-
 import { openModal, closeModal } from "../../state/collection/modalSlice";
 import UpdateStatusForm from "../../components/forms/updateStatusForm/UpdateStatusForm";
 import DeleteCollectionForm from "../../components/forms/DeleteCollectionForm.jsx/DeleteCollectionForm";
 
+import { COLLECTION_STATUSES } from "../../constants/collection-statuses";
+import { formatText } from "../../utils/formatText";
+
 export default function Dashboard() {
     const userLoggedIn = true;
+    const dispatch = useDispatch();
+
     const [inputValue, setInputValue] = useState("");
     const [showTodayOnly, setShowTodayOnly] = useState(true);
 
-    const dispatch = useDispatch();
+    /** ✅ ALL STATUSES CHECKED BY DEFAULT */
+    const [statusFilters, setStatusFilters] = useState(() =>
+        Object.values(COLLECTION_STATUSES).reduce((acc, status) => {
+            acc[status] = true;
+            return acc;
+        }, {})
+    );
 
     const activeModal = useSelector((state) => state.modal.activeModal);
+    const collectionId = useSelector(
+        (state) => state.modal.clickedCollectionId
+    );
+
+    const { collections } = useSelector((state) => state.collections);
+    const collection = collections.find((c) => c.id === collectionId);
 
     const handleOpenModal = (name) => {
         dispatch(openModal({ name }));
@@ -34,32 +50,24 @@ export default function Dashboard() {
         dispatch(closeModal());
     };
 
-    const handleResetSearch = () => {
-        setInputValue("");
+    const handleInputChange = (e) => {
+        setInputValue(
+            e.target.value.toLowerCase().replace(/\s{2,}/g, " ")
+        );
     };
 
-    const collectionId = useSelector(
-        (state) => state.modal.clickedCollectionId
-    );
-
-    const { collections } = useSelector(
-        (state) => state.collections
-    );
-
-    const collection = collections.find(
-        (c) => c.id === collectionId
-    );
-
-    const handleInputChange = (e) => {
-        const value = e.target.value
-            .toLowerCase()
-            .replace(/\s{2,}/g, ' '); // only collapse 2+ spaces into 1
-
-        setInputValue(value);
+    const handleStatusToggle = (status) => {
+        setStatusFilters((prev) => ({
+            ...prev,
+            [status]: !prev[status],
+        }));
     };
 
     return (
         <div className="dashboard">
+            {/* =========================
+               HEADER
+            ========================== */}
             <div className="dashboard-head">
                 <h2 className="dashboard-title">Collection Overview</h2>
 
@@ -73,10 +81,12 @@ export default function Dashboard() {
                 )}
             </div>
 
+            {/* =========================
+               SEARCH
+            ========================== */}
             <div className="dashboard-controls">
                 <div className="dashboard-search">
                     <SearchIcon className="search-icon" />
-
                     <input
                         type="text"
                         placeholder="Search collections..."
@@ -89,45 +99,75 @@ export default function Dashboard() {
                         <button
                             type="button"
                             className="reset-btn"
-                            onClick={handleResetSearch}
-                            aria-label="Clear search input"
+                            onClick={() => setInputValue("")}
                         >
                             ✕
                         </button>
                     )}
                 </div>
+            </div>
 
-                <label className="dashboard-checkbox">
+            {/* =========================
+               FILTERS (CHIPS)
+            ========================== */}
+            <div className="dashboard-controls status-filters">
+                {/* Today only chip */}
+                <label
+                    className={`status-chip today-only ${showTodayOnly ? "active" : ""
+                        }`}
+                >
                     <input
                         type="checkbox"
                         checked={showTodayOnly}
-                        onChange={(e) => setShowTodayOnly(e.target.checked)}
+                        onChange={(e) =>
+                            setShowTodayOnly(e.target.checked)
+                        }
                     />
-                    Today's collections only
+                    <span className="chip-label">Today only</span>
                 </label>
+
+                {/* Status chips */}
+                {Object.values(COLLECTION_STATUSES).map((status) => (
+                    <label
+                        key={status}
+                        className={`status-chip status-${status.toLowerCase()} ${statusFilters[status] ? "active" : ""
+                            }`}
+                    >
+                        <input
+                            type="checkbox"
+                            checked={statusFilters[status]}
+                            onChange={() =>
+                                handleStatusToggle(status)
+                            }
+                        />
+                        <span className="chip-label">
+                            {formatText(status)}
+                        </span>
+                    </label>
+                ))}
             </div>
 
+            {/* =========================
+               TABLE
+            ========================== */}
             <CollectionTable
                 searchValue={inputValue}
                 showTodayOnly={showTodayOnly}
+                activeStatuses={statusFilters}
             />
 
-            <Modal
-                isOpen={activeModal === "add"}
-                modalTitle="Add Collection"
-            >
-                <AddCollectionForm
-                    onCancel={handleCloseModal}
-                />
+            {/* =========================
+               MODALS
+            ========================== */}
+            <Modal isOpen={activeModal === "add"} modalTitle="Add Collection">
+                <AddCollectionForm onCancel={handleCloseModal} />
             </Modal>
 
             <Modal
                 isOpen={activeModal === "status"}
                 modalTitle="Update Collection Status"
             >
-                <UpdateStatusForm
-                    onCancel={handleCloseModal}
-                />
+                <UpdateStatusForm onCancel={handleCloseModal} />
             </Modal>
 
             <Modal
@@ -144,9 +184,7 @@ export default function Dashboard() {
                 isOpen={activeModal === "delete"}
                 modalTitle="Confirm Delete Collection"
             >
-                <DeleteCollectionForm
-                    onCancel={handleCloseModal}
-                />
+                <DeleteCollectionForm onCancel={handleCloseModal} />
             </Modal>
         </div>
     );

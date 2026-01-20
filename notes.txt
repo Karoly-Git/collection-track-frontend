@@ -7,11 +7,12 @@ REFACTOR / RESTRUCTURE
     - When adding comment, shouldn't re-load the table content.
     - Authentication
     - Listening to server/database changes and update acordingly
-    - 
+    - getDurationWithColor: make it scaleable to be able to choos as many intervalls and colors as needed (integrate color style in jsx)
+    - Make status badge colors global => easy to scale/change
 
 
 ------------------------
-FUNCTIONALITIES / UI
+FUNCTIONALITIES / UI / UX
 ------------------------
     - What if the status just acidentally changed? How to redo it?
     - Authorisation on login. userId: "9999", // This should come from auth state
@@ -25,6 +26,9 @@ FUNCTIONALITIES / UI
     - For status update: in progress, failed SystemMessages
     - When adding comment in the info modal, disable concurens field/buttons
     - In the info modal: option to amend the records
+    - If browser refreshes, keep the currently selected filters.
+    - Under the badge, display the spent time of that status.
+    - setInterval to update the displayed times.
 
 
 ------------------------
@@ -43,3 +47,8 @@ TO SETTINGS PAGE
     - Do you want to get notifications, if lorry spent time exceeding 1h, 2h...
 
 
+------------------------
+REPORTS
+------------------------
+    - Average & sum loading time of the day/week/month/year
+    - AM vs PM metrics

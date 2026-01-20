@@ -7,19 +7,30 @@ import { fetchAllCollections } from "../../../state/collection/collectionSlice";
 
 // Components
 import CollectionTableRow from "../CollectionTableRow/CollectionTableRow";
+import SystemMessage from "../../ui/SystemMessage/SystemMessage";
+
+// Icons
+import { IoSearchSharp as SearchIcon } from "react-icons/io5";
 
 // Styles
 import "./CollectionTable.css";
 
-import { IoSearchSharp as SearchIcon } from "react-icons/io5";
-import SystemMessage from "../../ui/SystemMessage/SystemMessage";
-
-export default function CollectionTable({ searchValue, showTodayOnly }) {
+export default function CollectionTable({
+    searchValue,
+    showTodayOnly,
+    activeStatuses, // ✅ NEW
+}) {
     const dispatch = useDispatch();
 
-    const { collections: collectionsList, loading, error } = useSelector(
-        (state) => state.collections
-    );
+    const {
+        collections: collectionsList,
+        loading,
+        error,
+    } = useSelector((state) => state.collections);
+
+    useEffect(() => {
+        dispatch(fetchAllCollections());
+    }, [dispatch]);
 
     const isToday = (dateString) => {
         const today = new Date();
@@ -35,20 +46,27 @@ export default function CollectionTable({ searchValue, showTodayOnly }) {
     const filteredCollections = collectionsList.filter((collection) => {
         const searchLower = searchValue.toLowerCase();
 
+        /** 🔍 SEARCH FILTER */
+        const searchMatch =
+            collection.materialName.toLowerCase().includes(searchLower) ||
+            collection.customerName.toLowerCase().includes(searchLower) ||
+            collection.collectionRefNum.toLowerCase().includes(searchLower);
+
+        /** 📅 TODAY FILTER */
         if (showTodayOnly && !isToday(collection.checkedInAt)) {
             return false;
         }
 
-        return (
-            collection.materialName.toLowerCase().includes(searchLower) ||
-            collection.customerName.toLowerCase().includes(searchLower) ||
-            collection.collectionRefNum.toLowerCase().includes(searchLower)
-        );
-    });
+        /** ✅ STATUS FILTER */
+        if (
+            activeStatuses &&
+            !activeStatuses[collection.currentStatus]
+        ) {
+            return false;
+        }
 
-    useEffect(() => {
-        dispatch(fetchAllCollections());
-    }, [dispatch]);
+        return searchMatch;
+    });
 
     if (loading) {
         return (
@@ -65,7 +83,12 @@ export default function CollectionTable({ searchValue, showTodayOnly }) {
             <SystemMessage
                 variant="error"
                 title="Failed to load collections"
-                message={<>We couldn't load collections from the server. Please check your connection or try again.</>}
+                message={
+                    <>
+                        We couldn't load collections from the server.
+                        Please check your connection or try again.
+                    </>
+                }
                 actionLabel="Retry"
                 onAction={() => dispatch(fetchAllCollections())}
             />
@@ -74,51 +97,50 @@ export default function CollectionTable({ searchValue, showTodayOnly }) {
 
     return (
         <>
-            {collectionsList.length === 0 && !loading && !error && (
+            {collectionsList.length === 0 && (
                 <SystemMessage
                     variant="error"
                     title="No collections on site"
-                    message={<>All clear for now. New arrivals will appear here.</>}
+                    message={
+                        <>All clear for now. New arrivals will appear here.</>
+                    }
                 />
-
             )}
 
             {collectionsList.length > 0 &&
                 filteredCollections.length === 0 &&
-                searchValue && (<SystemMessage
-                    variant="empty"
-                    icon={<SearchIcon />}
-                    title="No results found"
-                    message={
-                        <>
-                            No collections match "<strong>{searchValue}</strong>"
-                        </>
-                    }
-                />
-
+                searchValue && (
+                    <SystemMessage
+                        variant="empty"
+                        icon={<SearchIcon />}
+                        title="No results found"
+                        message="No collections match your search criteria. Try adjusting your filters or search terms."
+                    />
                 )}
 
-            {filteredCollections.length > 0 && (
-                <table className="collection-table">
-                    <thead>
-                        <tr>
-                            <th>Timer</th>
-                            <th>Material</th>
-                            <th>Customer</th>
-                            <th>Reference</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredCollections.map((collection) => (
-                            <CollectionTableRow
-                                key={collection.id}
-                                collection={collection}
-                            />
-                        ))}
-                    </tbody>
-                </table>
-            )}
+            {
+                filteredCollections.length > 0 && (
+                    <table className="collection-table">
+                        <thead>
+                            <tr>
+                                <th>Timer</th>
+                                <th>Material</th>
+                                <th>Customer</th>
+                                <th>Reference</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredCollections.map((collection) => (
+                                <CollectionTableRow
+                                    key={collection.id}
+                                    collection={collection}
+                                />
+                            ))}
+                        </tbody>
+                    </table>
+                )
+            }
         </>
     );
 }
