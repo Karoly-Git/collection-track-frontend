@@ -2,35 +2,33 @@
 REFACTOR / RESTRUCTURE
 ------------------------
     ✔ Move StatusBadge into UI
-    ✔ No button tag should be in the <td> where no need.
-    ✔ Make reusable component to Not result, Loading, Not found, etc messages.
-    - When adding comment, shouldn't re-load the table content.
+    ✔ No button tag should be in the <td> where not needed.
+    ✔ Make reusable component for No result, Loading, Not found, etc. messages.
     - Authentication
-    - Listening to server/database changes and update acordingly
-    - getDurationWithColor: make it scaleable to be able to choos as many intervalls and colors as needed (integrate color style in jsx)
+    - Listening to server/database changes and update accordingly
+    - getDurationWithColor: make it scalable to be able to choose as many intervals and colors as needed (integrate color style in JSX)
     - Make status badge colors global => easy to scale/change
 
 
 ------------------------
 FUNCTIONALITIES / UI / UX
 ------------------------
-    ✔ System message if no match to filter options. At this moment message is displayed only if no match to the serching value.
+    ✔ System message if no match to filter options. At this moment, the message is displayed only if no match to the searching value.
     ✔ A-Z & Z-A order in collection table
-    - What if the status just acidentally changed? How to redo it?
+    - What if the status just accidentally changed? How to redo it?
     - Authorisation on login. userId: "9999", // This should come from auth state
-    - Lorry spent time plus indicator displayed in the table row:
+    ✔ Lorry spent time plus indicator displayed in the table row:
         / time <= 1h ==> green
         / 1h <= time < 2h ==> yellow
         / time >= 2h ==> red 
-    - Title popup when hovering elements/components
-    - From-To date picker as filter
-    - For status update: in progress, failed SystemMessages
-    - When adding comment in the info modal, disable concurens field/buttons
+    - For status update: in-progress, failed SystemMessages
+    - When adding comment in the info modal, disable concurrent fields/buttons
     - In the info modal: option to amend the records
     - If browser refreshes, keep the currently selected filters.
-    - But add a filters reset button.
+    - Add a "filter reset button" to set all filters back to default.
     - Under the badge, display the spent time of that status.
     - setInterval to update the displayed times.
+    - (From-To date picker as filter?)
 
 
 ------------------------
@@ -38,7 +36,7 @@ STYLES
 ------------------------
     ✔ Make form element styles global
     - Dark mode in the settings
-    - Fix the side bar collaps on event when hamburger icon clicked
+    - Fix the sidebar collapse on event when hamburger icon is clicked
 
 
 ------------------------
@@ -46,7 +44,7 @@ TO SETTINGS PAGE
 ------------------------
     - Today's collections checked by default or not
     - Dark mode / Bright mode / Device default
-    - Do you want to get notifications, if lorry spent time exceeding 1h, 2h...
+    - Do you want to get notifications if lorry spent time exceeds 1h, 2h...
 
 
 ------------------------
@@ -54,3 +52,17 @@ REPORTS
 ------------------------
     - Average & sum loading time of the day/week/month/year
     - AM vs PM metrics
+
+------------------------
+OTHET DEVELOPMENT IDEAS
+------------------------
+    - Unit tests
+    - E2E tests
+    - CI/CD pipeline
+    - Dockerise the app
+    - PWA
+    - Mobile app version
+    - Multi-language support
+    - Export data to CSV/PDF
+    - Real-time notifications for status changes or too long time spent in a status
+    - User roles and permissions
