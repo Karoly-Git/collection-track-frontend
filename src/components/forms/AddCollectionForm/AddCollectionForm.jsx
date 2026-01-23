@@ -26,6 +26,7 @@ export default function AddCollectionForm({ onCancel }) {
             lorryRegNum: regNum || undefined,
             updatedByUserId: userId,
             comment: comment || undefined,
+            timestamp: new Date().toISOString(),
         };
 
         dispatch(

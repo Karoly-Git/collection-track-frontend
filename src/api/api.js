@@ -96,6 +96,7 @@ export const addCollection = async ({
     lorryRegNum,
     updatedByUserId,
     comment,
+    timestamp
 }) => {
     const response = await fetch(`${API_URL}/collections`, {
         method: "POST",
@@ -109,6 +110,7 @@ export const addCollection = async ({
             lorryRegNum,         // OPTIONAL
             updatedByUserId,     // REQUIRED
             comment,             // OPTIONAL
+            timestamp            // REQUIRED
         }),
     });
 
