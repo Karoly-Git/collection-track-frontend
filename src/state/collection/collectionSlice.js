@@ -19,6 +19,10 @@ const initialState = {
     addCollectionStatus: "idle", // "idle" | "loading" | "succeeded" | "failed"
     addCollectionError: null,
     addCollectionSuccessMessage: null,
+
+    // ✅ Update status state (separate from global loading/error)
+    updateStatusStatus: "idle", // "idle" | "loading" | "succeeded" | "failed"
+    updateStatusError: null,
 };
 
 /**
@@ -63,6 +67,14 @@ export const updateCollectionStatusById = createAsyncThunk(
         { rejectWithValue }
     ) => {
         try {
+            // ⏳ simulate slow API (3 seconds)
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+
+            // ❌ simulate failure (50% chance)
+            if (Math.random() < 0.5) {
+                throw new Error("Simulated error: status could not be updated");
+            }
+
             const updatedCollection = await updateCollectionStatus({
                 collectionId,
                 newStatus,
@@ -126,7 +138,7 @@ export const addNewCollection = createAsyncThunk(
 
             // ❌ simulate failure (50% chance)
             if (Math.random() < 0.5) {
-                throw new Error("Simulated error: collection could not be added. Please try again.");
+                throw new Error("Simulated error: collection could not be added");
             }
 
             const newCollection = await addCollection(payload);
@@ -146,6 +158,12 @@ const collectionSlice = createSlice({
             state.addCollectionStatus = "idle";
             state.addCollectionError = null;
             state.addCollectionSuccessMessage = null;
+        },
+
+        // ✅ reset update-status state
+        resetUpdateStatusState: (state) => {
+            state.updateStatusStatus = "idle";
+            state.updateStatusError = null;
         },
     },
     extraReducers: (builder) => {
@@ -180,13 +198,13 @@ const collectionSlice = createSlice({
                 state.error = action.payload || "Failed to delete collection";
             })
 
-            /* ---------------- Update status ---------------- */
+            /* ---------------- Update status ✅ ---------------- */
             .addCase(updateCollectionStatusById.pending, (state) => {
-                state.loading = true;
-                state.error = null;
+                state.updateStatusStatus = "loading";
+                state.updateStatusError = null;
             })
             .addCase(updateCollectionStatusById.fulfilled, (state, action) => {
-                state.loading = false;
+                state.updateStatusStatus = "succeeded";
 
                 const updatedCollection = action.payload;
 
@@ -199,8 +217,9 @@ const collectionSlice = createSlice({
                 }
             })
             .addCase(updateCollectionStatusById.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload || "Failed to update collection status";
+                state.updateStatusStatus = "failed";
+                state.updateStatusError =
+                    action.payload || "Failed to update collection status";
             })
 
             /* ---------------- Add comment ---------------- */
@@ -245,6 +264,9 @@ const collectionSlice = createSlice({
     },
 });
 
-export const { resetAddCollectionState } = collectionSlice.actions;
+export const {
+    resetAddCollectionState,
+    resetUpdateStatusState,
+} = collectionSlice.actions;
 
 export default collectionSlice.reducer;
