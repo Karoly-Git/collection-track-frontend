@@ -15,15 +15,20 @@ FUNCTIONALITIES / UI / UX
     ✔ System message if no match to filter options. At this moment, the message is displayed only if no match to the searching value.
     ✔ A-Z & Z-A order in collection table
     ✔ Lorry spent time plus indicator displayed in the table row:
-        / time <= 1h ==> green
-        / 1h <= time < 2h ==> yellow
-        / time >= 2h ==> red 
+        ✔ / time <= 1h ==> green
+        ✔ / 1h <= time < 2h ==> yellow
+        ✔ / time >= 2h ==> red 
     ✔ Add a "filter reset button" to set all filters back to default.
     ✔ setInterval to update the displayed times.
     ✔ For addCollection: in-progress, failed, success messages
     ✔ For status update: in-progress, failed, success messages
     ✔ Under the badge, display the spent time of that status.
-    - In the info modal: option to amend the records
+    - In the info modal:
+        / option to amend the records
+        / disable modal cancel button when adding a comment
+        / disable other add comment buttons when adding a comment
+        / the adding messga in progress or failed to add message in the comment modal should be 
+          displayed only at the particular comment form, not in all
     - What if the status just accidentally changed? How to redo it?
     - Authorisation on login. userId: "9999", // This should come from auth state
     - When adding comment in the info modal, disable concurrent fields/buttons
