@@ -23,12 +23,12 @@ FUNCTIONALITIES / UI / UX
     ✔ For status update: in-progress, failed, success messages
     ✔ Under the badge, display the spent time of that status.
     ✔ Delete collection: failed message and retry option if error occurs.
-    ✔ Symulate collection deleting error.
+    ✔ Simulate collection deleting error.
     - Authentication
     - Listening to server/database changes and update accordingly
     - In the info modal:
         - option to amend the records
-        ✔ dont display the show/hide comment icon while a comment is being added
+        ✔ don't display the show/hide comment icon while a comment is being added
         ✔ hide the modal close button while a comment is being added
         ✔ Comment adding:
             ✔ "in progress/failed" messages should be displayed only at the currently edited comment form
@@ -59,7 +59,7 @@ TO SETTINGS PAGE
     - Do you want to get notifications if lorry spent time exceeds 1h, 2h...
     - Collection table default ordering.
     - If browser refreshes, keep the currently selected filters.
-    - Collectin table default ordering by time (newes/oldest first?)
+    - Collection table default ordering by time (newest/oldest first?)
 
 
 ------------------------
@@ -69,7 +69,7 @@ REPORTS
     - AM vs PM metrics
 
 ------------------------
-OTHET DEVELOPMENT IDEAS
+OTHER DEVELOPMENT IDEAS
 ------------------------
     - Unit tests
     - E2E tests
