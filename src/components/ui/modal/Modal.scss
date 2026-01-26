@@ -32,6 +32,16 @@
                 font-weight: 100;
                 color: gray;
             }
+
+            .close-icon {
+                cursor: pointer;
+                font-size: 1.5rem;
+                color: gray;
+
+                &:hover {
+                    color: black;
+                }
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./Modal.css";
+import { IoMdClose as CloseIcon } from "react-icons/io";
 
 export default function Modal({
     isOpen,
@@ -43,6 +44,9 @@ export default function Modal({
             <div className="modal-container">
                 <div className="modal-header">
                     <h4 className="modal-title">{modalTitle}</h4>
+                    {!disableEscape && (
+                        <CloseIcon className="close-icon" onClick={() => escapeAction?.()} />
+                    )}
                 </div>
 
                 <div className="modal-body">{children}</div>
