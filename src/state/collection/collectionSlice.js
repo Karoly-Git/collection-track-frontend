@@ -49,6 +49,11 @@ export const deleteCollectionById = createAsyncThunk(
             // ⏳ simulate slow API
             await new Promise((resolve) => setTimeout(resolve, 3000));
 
+            // ❌ simulate failure (50% chance)
+            if (Math.random() < 0.5) {
+                throw new Error("Simulated error: collection could not be deleted");
+            }
+
             await deleteCollection(collectionId);
             return collectionId;
         } catch (error) {
@@ -104,7 +109,7 @@ export const addCommentToCollectionStatus = createAsyncThunk(
     ) => {
         try {
             // ⏳ simulate slow API (3 seconds)
-            await new Promise((resolve) => setTimeout(resolve, 8000));
+            await new Promise((resolve) => setTimeout(resolve, 3000));
 
             // ❌ simulate failure (50% chance)
             if (Math.random() < 0.5) {

@@ -24,17 +24,11 @@ export default function DeleteCollectionForm({ onCancel }) {
     const [secondsLeft, setSecondsLeft] = useState(AUTO_CLOSE_SECONDS);
 
     /* ---------- Redux state ---------- */
-    const collectionId = useSelector(
-        (state) => state.modal.clickedCollectionId
-    );
+    const collectionId = useSelector((state) => state.modal.clickedCollectionId);
 
-    const { loading, collections } = useSelector(
-        (state) => state.collections
-    );
+    const { loading, collections } = useSelector((state) => state.collections);
 
-    const collection = collections.find(
-        (c) => c.id === collectionId
-    );
+    const collection = collections.find((c) => c.id === collectionId);
 
     const isBusy = isSubmitting || loading;
 
@@ -70,7 +64,9 @@ export default function DeleteCollectionForm({ onCancel }) {
             setIsDeleted(true);
         } catch (err) {
             console.error("Delete failed:", err);
-            setError("Failed to delete the collection. Please try again.");
+
+            // ✅ CHANGED: show real thunk error message if available
+            setError(err || "Failed to delete the collection. Please try again.");
         } finally {
             setIsSubmitting(false);
         }
@@ -117,14 +113,10 @@ export default function DeleteCollectionForm({ onCancel }) {
     };
 
     return (
-        <form
-            className="form delete-collection-form"
-            onSubmit={handleSubmit}
-        >
+        <form className="form delete-collection-form" onSubmit={handleSubmit}>
             <div className="form-header">
                 <h2
-                    className={`warning-text ${isDeleted ? "success" : error ? "error" : ""
-                        }`}
+                    className={`warning-text ${isDeleted ? "success" : error ? "error" : ""}`}
                     aria-live="polite"
                 >
                     {renderHeader()}
@@ -132,8 +124,7 @@ export default function DeleteCollectionForm({ onCancel }) {
 
                 {isDeleted && (
                     <p className="auto-close-text">
-                        (Auto closing in{" "}
-                        <strong>{secondsLeft}</strong> second
+                        (Auto closing in <strong>{secondsLeft}</strong> second
                         {secondsLeft !== 1 ? "s" : ""})
                     </p>
                 )}
@@ -161,12 +152,7 @@ export default function DeleteCollectionForm({ onCancel }) {
 
             <div className="actions">
                 {isDeleted && (
-                    <Button
-                        type="button"
-                        text="Close"
-                        className="btn accept"
-                        onClick={onCancel}
-                    />
+                    <Button type="button" text="Close" className="btn accept" onClick={onCancel} />
                 )}
 
                 {!isDeleted && !isBusy && (
@@ -177,10 +163,12 @@ export default function DeleteCollectionForm({ onCancel }) {
                             className="btn reject"
                             onClick={onCancel}
                         />
+
                         <Button
                             type="submit"
                             text={error ? "Retry Delete" : "Delete Collection"}
-                            className="btn delete"
+                            className={`btn delete ${isBusy ? "disabled" : ""}`} // ✅ CHANGED
+                            disabled={isBusy} // ✅ CHANGED
                         />
                     </>
                 )}
