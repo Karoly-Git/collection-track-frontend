@@ -151,7 +151,7 @@ export default function InfoForm({ collection, onCancel }) {
             <header className="collection-header">
                 <div className="collection-title-row">
                     <h2>
-                        {draft.materialName} • {draft.customerName} • {id}
+                        {draft.materialName} • {draft.customerName} • {id} {isEditing && <span className="edit-tag">(Editing mode)</span>}
                     </h2>
 
                     {!isEditing && (
@@ -171,7 +171,7 @@ export default function InfoForm({ collection, onCancel }) {
 
                 <div className="collection-details">
                     <p>
-                        <strong>Material</strong>
+                        <strong>Material {isEditing && <span className="edit-tag">(Editing mode)</span>}</strong>
                         {isEditing ? (
                             <select
                                 value={draft.materialName}
@@ -189,7 +189,7 @@ export default function InfoForm({ collection, onCancel }) {
                     </p>
 
                     <p>
-                        <strong>Customer</strong>
+                        <strong>Customer {isEditing && <span className="edit-tag">(Editing mode)</span>}</strong>
                         {isEditing ? (
                             <select
                                 value={draft.customerName}
@@ -207,7 +207,7 @@ export default function InfoForm({ collection, onCancel }) {
                     </p>
 
                     <p>
-                        <strong>Reference number</strong>
+                        <strong>Reference number {isEditing && <span className="edit-tag">(Editing mode)</span>}</strong>
                         {isEditing ? (
                             <input
                                 value={draft.collectionRefNum}
@@ -221,7 +221,7 @@ export default function InfoForm({ collection, onCancel }) {
                     </p>
 
                     <p>
-                        <strong>Vehicle reg number</strong>
+                        <strong>Vehicle reg number {isEditing && <span className="edit-tag">(Editing mode)</span>}</strong>
                         {isEditing ? (
                             <input
                                 value={draft.lorryRegNum}
@@ -233,7 +233,7 @@ export default function InfoForm({ collection, onCancel }) {
                     </p>
 
                     <p>
-                        <strong>Current status</strong>
+                        <strong>Current status {isEditing && <span className="edit-tag">(Editing mode)</span>}</strong>
                         {isEditing ? (
                             <select
                                 value={draft.currentStatus}

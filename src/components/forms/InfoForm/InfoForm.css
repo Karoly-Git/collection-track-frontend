@@ -72,6 +72,7 @@
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 20px;
+  margin-bottom: 1rem;
 }
 .collection-info-form .collection-details p {
   margin: 0;
@@ -98,7 +99,6 @@
   border-radius: 10px;
   padding: 10px 12px;
   font-size: 0.95rem;
-  font-weight: 600;
   text-transform: uppercase;
   color: var(--text);
   background: #ffffff;
@@ -224,4 +224,10 @@
 }
 .collection-info-form .status-entry.CHECKED_OUT::before {
   background: #d1d5db;
+}
+
+.edit-tag {
+  text-transform: none !important;
+  font-size: x-small !important;
+  color: red !important;
 }/*# sourceMappingURL=InfoForm.css.map */
