@@ -7,6 +7,8 @@ import {
     addCollection,
 } from "../../api/api";
 
+const delayTimeMs = 0 // ms
+
 const initialState = {
     collections: [],
     loading: false,
@@ -51,7 +53,7 @@ export const deleteCollectionById = createAsyncThunk(
     async (collectionId, { rejectWithValue }) => {
         try {
             // ⏳ simulate slow API
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            await new Promise((resolve) => setTimeout(resolve, delayTimeMs));
 
             // ❌ simulate failure (50% chance)
             // if (Math.random() < 0.5) {
@@ -77,7 +79,7 @@ export const updateCollectionStatusById = createAsyncThunk(
     ) => {
         try {
             // ⏳ simulate slow API (3 seconds)
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            await new Promise((resolve) => setTimeout(resolve, delayTimeMs));
 
             // ❌ simulate failure (50% chance)
             // if (Math.random() < 0.5) {
@@ -124,7 +126,7 @@ export const addComment = createAsyncThunk(
     ) => {
         try {
             // ⏳ simulate slow API (3 seconds)
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            await new Promise((resolve) => setTimeout(resolve, delayTimeMs));
 
             // ❌ simulate failure (50% chance)
             // if (Math.random() < 0.5) {
@@ -154,7 +156,7 @@ export const addNewCollection = createAsyncThunk(
     async (payload, { rejectWithValue }) => {
         try {
             // ⏳ simulate slow API (3 seconds)
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            await new Promise((resolve) => setTimeout(resolve, delayTimeMs));
 
             // ❌ simulate failure (50% chance)
             // if (Math.random() < 0.5) {
