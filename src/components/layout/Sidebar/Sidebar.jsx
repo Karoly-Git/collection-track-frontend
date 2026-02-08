@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "./sidebar.css";
+import "./sidebar.scss";
 
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { IoIosStats } from "react-icons/io";

@@ -4,6 +4,7 @@ import AppLayout from "../layout/appLayout/AppLayout";
 import Dashboard from "../../pages/dashboard/Dashboard";
 import Reports from "../../pages/reports/Reports";
 import Settings from "../../pages/settings/Settings";
+import Login from "../../pages/login/Login";
 
 export default function AppRouter() {
     return (
@@ -13,6 +14,7 @@ export default function AppRouter() {
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/reports" element={<Reports />} />
                     <Route path="/settings" element={<Settings />} />
+                    <Route path="/login" element={<Login />} />
                 </Route>
 
                 <Route path="*" element={<h1>Page Not Found</h1>} />

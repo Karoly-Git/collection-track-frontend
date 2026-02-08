@@ -3,7 +3,7 @@ import TopBar from "../topbar/TopBar";
 import Sidebar from "../sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 
-import "./AppLayout.css";
+import "./AppLayout.scss";
 
 export default function AppLayout() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
