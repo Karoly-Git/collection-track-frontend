@@ -6,6 +6,7 @@ import Spinner from "../../ui/Spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 
 import "../FormStyle.scss";
+import "./AddCollectionForm.scss";
 import {
     addNewCollection,
     resetAddCollectionState,

@@ -183,7 +183,6 @@ export default function UpdateStatusForm({ onCancel }) {
                 )}
             </div>
 
-            {/* ✅ Main UI (only when idle or error) */}
             {!isUpdated && !isBusy && (
                 <>
                     <h2>Want to update Status?</h2>
