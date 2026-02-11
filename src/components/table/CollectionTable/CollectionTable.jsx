@@ -16,6 +16,14 @@ import { LuArrowUpAZ as DescAbcIcon } from "react-icons/lu";
 import { RiSortNumberAsc as AscNumIcon } from "react-icons/ri";
 import { RiSortNumberDesc as DescNumIcon } from "react-icons/ri";
 
+import { RiSortNumberDesc as Icon } from "react-icons/ri";
+import { SiMaterialdesignicons as MaterialIcon } from "react-icons/si";
+import { LuTimer as TimerIcon } from "react-icons/lu";
+import { MdOutlineCorporateFare as CustomerIcon } from "react-icons/md";
+import { AiOutlineFieldNumber } from "react-icons/ai";
+import { TbNumber as RefIcon } from "react-icons/tb";
+import { GrStatusInfo as StatusIcon } from "react-icons/gr";
+
 // Styles
 import "./CollectionTable.scss";
 
@@ -212,10 +220,10 @@ export default function CollectionTable({
                 <table className="collection-table">
                     <thead>
                         <tr>
-                            {/* ⏱ TIMER */}
                             <th onClick={() => handleSort("checkedInAt")}>
                                 <span className="th-content">
-                                    Timer
+                                    <TimerIcon className="content-icon" />
+                                    <span className="content-text">Timer</span>
                                     <span className="sort-icon">
                                         {renderSortIcon("checkedInAt")}
                                     </span>
@@ -224,16 +232,20 @@ export default function CollectionTable({
 
                             <th onClick={() => handleSort("materialName")}>
                                 <span className="th-content">
-                                    Material
+                                    <MaterialIcon className="content-icon" />
+                                    <span className="content-text">Material</span>
                                     <span className="sort-icon">
                                         {renderSortIcon("materialName")}
                                     </span>
                                 </span>
                             </th>
 
-                            <th onClick={() => handleSort("customerName")}>
+                            <th className="customer-column" onClick={() => handleSort("customerName")}>
                                 <span className="th-content">
-                                    Customer
+                                    <CustomerIcon className="content-icon" />
+
+                                    <span className="content-text">Customer</span>
+                                    <span className="content-icon" />
                                     <span className="sort-icon">
                                         {renderSortIcon("customerName")}
                                     </span>
@@ -242,7 +254,10 @@ export default function CollectionTable({
 
                             <th onClick={() => handleSort("collectionRefNum")}>
                                 <span className="th-content">
-                                    Reference
+                                    <RefIcon className="content-icon" />
+
+                                    <span className="content-text">Reference</span>
+                                    <span className="content-icon" />
                                     <span className="sort-icon">
                                         {renderSortIcon("collectionRefNum")}
                                     </span>
@@ -251,7 +266,10 @@ export default function CollectionTable({
 
                             <th onClick={() => handleSort("currentStatus")}>
                                 <span className="th-content">
-                                    Status
+                                    <StatusIcon className="content-icon" />
+
+                                    <span className="content-text">Status</span>
+                                    <span className="content-icon" />
                                     <span className="sort-icon">
                                         {renderSortIcon("currentStatus")}
                                     </span>

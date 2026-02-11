@@ -1,6 +1,10 @@
 .dashboard {
     padding: 2rem;
 
+    @media(max-width: 1000px) {
+        padding: 0;
+    }
+
     /* =========================
        Dashboard Header
     ========================== */
@@ -16,6 +20,10 @@
         font-weight: 500;
         letter-spacing: 1px;
         margin-right: 1rem;
+
+        @media(max-width: 430px) {
+            display: none;
+        }
     }
 
     .dashboard-controls {

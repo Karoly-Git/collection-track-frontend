@@ -1,7 +1,7 @@
 .sidebar {
     background-color: #143757;
     width: 76px;
-    padding: 1.5rem 1rem;
+    padding: 0.5rem;
     display: flex;
     transition: margin-left 0.3s ease, padding 0.3s ease;
 
@@ -61,6 +61,6 @@
 
     /* COLLAPSED STATE */
     &.collapsed {
-        margin-left: -100px;
+        margin-left: -76px;
     }
 }

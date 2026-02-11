@@ -132,6 +132,8 @@ export default function CollectionTableRow({ collection }) {
                     {showLiveTimer && (
                         <span className="indicator" style={indicatorStyle}></span>
                     )}
+                </div>
+                <div className="cell-content timer">
                     <span className={`time ${!showLiveTimer ? "muted" : ""}`}>
                         {time}
                     </span>
@@ -147,14 +149,20 @@ export default function CollectionTableRow({ collection }) {
                 <div className="time-checked-in">
                     {formatDateTime(checkedInAt, {
                         date: true,
+                        time: false,
+                    })}
+                </div>
+                <div className="time-checked-in">
+                    {formatDateTime(checkedInAt, {
+                        date: false,
                         time: true,
                     })}
                 </div>
             </td>
 
             {/* Customer */}
-            <td>
-                <div className="cell-content customer-name">{customerName}</div>
+            <td className="customer-column">
+                <div className="cell-content">{customerName}</div>
             </td>
 
             {/* Reference */}
@@ -172,7 +180,7 @@ export default function CollectionTableRow({ collection }) {
             />
 
             {/* Actions */}
-            <td className="action">
+            <td className="action action-column">
                 <Button
                     icon={InfoIcon}
                     className="icon-btn info"

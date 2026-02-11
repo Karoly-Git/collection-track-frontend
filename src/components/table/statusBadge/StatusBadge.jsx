@@ -12,7 +12,8 @@ export default function StatusBadge({ currentStatus, onClick, isDiv = false, spe
                 <span
                     className={`status-badge ${currentStatus.toLowerCase()}`}
                 >
-                    <Icon className="status-icon" /> {formatText(currentStatus)}
+                    <Icon className="status-icon" />
+                    <span className="status-text">{formatText(currentStatus)}</span>
                 </span>
             </span>
         );
@@ -26,7 +27,8 @@ export default function StatusBadge({ currentStatus, onClick, isDiv = false, spe
                 className={`status-badge ${currentStatus.toLowerCase()}`}
                 onClick={onClick}
             >
-                <Icon className="status-icon" /> {formatText(currentStatus)}
+                <Icon className="status-icon" />
+                <span className="status-text">{formatText(currentStatus)}</span>
             </button>
             {
                 currentStatus !== COLLECTION_STATUSES.CHECKED_OUT &&
