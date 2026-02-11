@@ -1,8 +1,8 @@
 .form {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    min-width: 280px;
+    //gap: 2rem;
+    //min-width: 280px;
 
     /* ================= Header ================= */
     .form-header {
@@ -11,6 +11,7 @@
         gap: 0.75rem;
 
         .warning-text {
+            //width: 100%;
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -115,7 +116,7 @@
         .identifier-row {
             display: flex;
             justify-content: space-between;
-            gap: 1rem;
+            //gap: 1rem;
 
             font-size: 0.9rem;
 
@@ -136,5 +137,6 @@
         display: flex;
         gap: 1rem;
         justify-content: flex-end;
+        margin-top: 2rem;
     }
 }

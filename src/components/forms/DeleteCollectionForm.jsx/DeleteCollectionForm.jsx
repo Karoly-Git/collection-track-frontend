@@ -134,11 +134,6 @@ export default function DeleteCollectionForm({ onCancel }) {
             {!isDeleted && !isBusy && (
                 <div className="identifier">
                     <div className="identifier-row">
-                        <span className="label">ID:</span>
-                        <span className="value">{collectionId}</span>
-                    </div>
-
-                    <div className="identifier-row">
                         <span className="label">Material:</span>
                         <span className="value">{materialName}</span>
                     </div>
