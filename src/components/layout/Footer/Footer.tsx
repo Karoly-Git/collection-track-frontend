@@ -7,7 +7,7 @@ export default function Footer() {
         <footer className="footer">
             <div className="footer__container">
                 <span className="footer__text">
-                    © {year} Collection Tracker
+                    © {year} Karoly Hornyak
                 </span>
 
                 <span className="footer__version">
