@@ -15,6 +15,8 @@ import type { Collection } from "@/types/collection";
 // Functions
 import { formatText } from '@/utils/formatText';
 import { getTimeSpentInStatus } from "@/utils/getTimeSpentInStatus";
+import { useEffect, useState } from "react";
+import { getTimeOnSiteAndIndicator } from "@/utils/getTimeOnSiteAndIndicator";
 
 
 // ============================
@@ -30,8 +32,23 @@ type TableRowProps = {
 // ============================
 
 export default function TableRow({ collection }: TableRowProps) {
+    const [timeOnSite, setTimeOnSite] = useState<string>("");
+    const [urgencyColor, setUrgencyColor] = useState<string>("");
 
-    const Icon = STATUS_ICONS[collection.currentStatus];
+    useEffect(() => {
+        function getSpentTime(): void {
+            const { time, color } = getTimeOnSiteAndIndicator(collection.checkedInAt);
+
+            setTimeOnSite(time);
+            setUrgencyColor(color);
+        }
+
+        getSpentTime();
+
+        const interval = setInterval(getSpentTime, 1000);
+
+        return () => clearInterval(interval);
+    }, [collection.checkedInAt]); const Icon = STATUS_ICONS[collection.currentStatus];
 
     return (
         <tr className="collection-table-row">
@@ -39,14 +56,7 @@ export default function TableRow({ collection }: TableRowProps) {
             {/* Timer */}
             <td>
                 <div className="cell-content timer">
-                    <span
-                        className="indicator"
-                        style={{ backgroundColor: "#f39c12" }}
-                    ></span>
-                </div>
-
-                <div className="cell-content timer">
-                    <span className="time">{collection.checkedInAt}</span>
+                    <span style={{ backgroundColor: urgencyColor }} className="time">{timeOnSite}</span>
                 </div>
             </td>
 
