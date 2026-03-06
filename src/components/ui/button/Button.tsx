@@ -6,6 +6,7 @@ type ButtonVariant =
     | "add"
     | "reject"
     | "accept"
+    | "info"
     | "delete"
     | "disabled";
 
@@ -13,7 +14,7 @@ type ButtonProps = {
     type?: "button" | "submit" | "reset";
     variant?: ButtonVariant;
     icon?: ElementType;
-    text: string;
+    text?: string;
     onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 

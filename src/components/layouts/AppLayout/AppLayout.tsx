@@ -8,7 +8,7 @@ import Footer from "@/components/layouts/Footer/Footer";
 import "./AppLayout.scss";
 
 export default function AppLayout() {
-    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
 
     const toggleSidebar = (): void => {
         setIsSidebarOpen(prev => !prev);

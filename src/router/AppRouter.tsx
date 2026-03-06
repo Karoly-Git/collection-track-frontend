@@ -1,4 +1,4 @@
-import AppLayout from "@/components/layout/AppLayout/AppLayout";
+import AppLayout from "@/components/layouts/AppLayout/AppLayout";
 import Dashboard from "@/pages/Dashboard/Dashboard";
 import Login from "@/pages/Login/Login";
 import Reports from "@/pages/Reports/Reports";
