@@ -256,6 +256,8 @@ GitHub Actions Workflow
       ↓
 Install Dependencies (npm install)
       ↓
+Run Tests (if present)
+      ↓
 Build React Application (npm run build)
       ↓
 Deploy to Firebase Hosting
