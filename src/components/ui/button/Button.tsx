@@ -1,20 +1,12 @@
-import "./Button.scss";
 import type { ElementType, MouseEventHandler } from "react";
-
-type ButtonVariant =
-    | "x-btn"
-    | "add"
-    | "reject"
-    | "accept"
-    | "info"
-    | "delete"
-    | "disabled";
+import "./Button.scss";
 
 type ButtonProps = {
     type?: "button" | "submit" | "reset";
-    variant?: ButtonVariant;
+    variant?: string;
     icon?: ElementType;
     text?: string;
+    className?: string,
     onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -25,16 +17,15 @@ export default function Button({
     text,
     onClick,
 }: ButtonProps) {
-    const className = ["btn", variant].filter(Boolean).join(" ");
 
     return (
         <button
             type={type}
-            className={className}
+            className={`btn ${variant}`}
             onClick={onClick}
         >
             {Icon && <Icon className="icon" />}
-            <span className="btn-text">{text}</span>
+            {text && <span className="btn-text">{text}</span>}
         </button>
     );
 }

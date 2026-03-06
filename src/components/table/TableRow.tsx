@@ -6,18 +6,16 @@ import { RiDeleteBin2Line as BinIcon } from "react-icons/ri";
 import Button from "../ui/button/Button";
 
 // Constants
-import { STATUS_ICONS } from "@/constants/status-icons";
-import { COLLECTION_STATUSES } from "@/constants/collection-statuses";
+import { STATUS_CONFIG, COLLECTION_STATUSES } from "@/constants/status-config";
 
 // Types
 import type { Collection } from "@/types/collection";
 
 // Functions
-import { formatText } from '@/utils/formatText';
+import { formatText } from "@/utils/formatText";
 import { getTimeSpentInStatus } from "@/utils/getTimeSpentInStatus";
 import { useEffect, useState } from "react";
 import { getTimeOnSiteAndIndicator } from "@/utils/getTimeOnSiteAndIndicator";
-
 
 // ============================
 // Types
@@ -48,7 +46,10 @@ export default function TableRow({ collection }: TableRowProps) {
         const interval = setInterval(getSpentTime, 1000);
 
         return () => clearInterval(interval);
-    }, [collection.checkedInAt]); const Icon = STATUS_ICONS[collection.currentStatus];
+    }, [collection.checkedInAt]);
+
+    const statusConfig = STATUS_CONFIG[collection.currentStatus];
+    const Icon = statusConfig.icon;
 
     return (
         <tr className="collection-table-row">
@@ -56,7 +57,12 @@ export default function TableRow({ collection }: TableRowProps) {
             {/* Timer */}
             <td>
                 <div className="cell-content timer">
-                    <span style={{ backgroundColor: urgencyColor }} className="time">{timeOnSite}</span>
+                    <span
+                        style={{ backgroundColor: urgencyColor }}
+                        className="time"
+                    >
+                        {timeOnSite}
+                    </span>
                 </div>
             </td>
 
@@ -73,7 +79,7 @@ export default function TableRow({ collection }: TableRowProps) {
                 <div className="time-checked-in">
                     {new Date(collection.checkedInAt).toLocaleTimeString([], {
                         hour: "2-digit",
-                        minute: "2-digit"
+                        minute: "2-digit",
                     })}
                 </div>
             </td>
@@ -94,17 +100,12 @@ export default function TableRow({ collection }: TableRowProps) {
 
             {/* Status */}
             <td className="current-status">
-                <button
-                    type="button"
-                    className={`status-badge ${collection.currentStatus.toLowerCase()}`}
+                <Button
+                    variant={statusConfig.variant}
+                    icon={Icon}
+                    text={formatText(collection.currentStatus)}
                     onClick={() => { }}
-                >
-                    <Icon className="status-icon" />
-
-                    <span className="status-text">
-                        {formatText(collection.currentStatus)}
-                    </span>
-                </button>
+                />
 
                 {collection.currentStatus !== COLLECTION_STATUSES.CHECKED_OUT && (
                     <div>{getTimeSpentInStatus(collection)}</div>
@@ -115,13 +116,13 @@ export default function TableRow({ collection }: TableRowProps) {
             <td className="action action-column">
 
                 <Button
-                    variant="info"
+                    variant="info only-icon"
                     icon={InfoIcon}
                 />
 
                 <Button
+                    variant="delete only-icon"
                     icon={BinIcon}
-                    variant="delete"
                 />
 
             </td>

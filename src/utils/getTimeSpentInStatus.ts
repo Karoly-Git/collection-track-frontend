@@ -1,4 +1,4 @@
-import { COLLECTION_STATUSES } from "@/constants/collection-statuses";
+import { COLLECTION_STATUSES } from "@/constants/status-config";
 import type { Collection } from "@/types/collection";
 
 export const getTimeSpentInStatus = (collection: Collection): string => {

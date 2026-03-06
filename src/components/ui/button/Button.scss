@@ -1,18 +1,88 @@
 .btn {
-    padding: 0.45rem 1.1rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.45rem 1rem;
     font-size: 0.85rem;
-    border-radius: 3px;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
+    gap: 0.5rem;
     transition:
         background-color 0.2s ease,
         box-shadow 0.15s ease,
         transform 0.1s ease;
-    //font-weight: bold;
+
+    .icon {
+        //background-color: yellow;
+        font-size: 1.3rem;
+    }
 
     &:active {
         transform: translateY(1px);
     }
+
+    &.delete {
+        background: darkred;
+        color: #fff;
+
+        &:hover {
+            background: #b60000;
+        }
+    }
+
+    &.info {
+        background: rgb(0, 139, 42);
+        color: #fff;
+
+        &:hover {
+            background: #15b600;
+        }
+    }
+
+    &.only-icon {
+        padding: 0.5rem;
+    }
+
+    &.CHECKED_IN {
+        background: red;
+        color: #fff;
+
+        &:hover {
+            background: #15b600;
+        }
+    }
+
+    &.LOADING_IN_PROGRESS {
+        background: blue;
+        color: #fff;
+
+        &:hover {
+            background: #15b600;
+        }
+    }
+
+    &.LOADED {
+        background: green;
+        color: #fff;
+
+        &:hover {
+            background: #15b600;
+        }
+    }
+
+    &.CHECKED_OUT {
+        background: gray;
+        color: #fff;
+
+        &:hover {
+            background: #15b600;
+        }
+    }
+}
+
+/*
+
 
     &.x-btn {
         background: transparent;
@@ -70,23 +140,15 @@
         }
     }
 
-    &.delete {
-        background: #a40000;
-        color: #fff;
-
-        &:hover {
-            background: darkred;
-        }
-    }
-
     &.disabled {
         background: #c4c4c4;
         color: #7a7a7a;
         pointer-events: none;
     }
 }
+*/
 
-.icon-btn {
+/*.icon-btn {
     all: unset;
     display: inline-flex;
     align-items: center;
@@ -130,4 +192,4 @@
         color: #fff;
         background-color: #d51f1f;
     }
-}
+}*/
