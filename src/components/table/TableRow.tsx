@@ -6,28 +6,21 @@ import { RiDeleteBin2Line as BinIcon } from "react-icons/ri";
 import Button from "../ui/button/Button";
 
 // Constants
-import { STATUS_CONFIG, COLLECTION_STATUSES } from "@/constants/status-config";
+import { COLLECTION_STATUSES } from "@/constants/collection-statuses";
 
 // Types
 import type { Collection } from "@/types/collection";
 
 // Functions
-import { formatText } from "@/utils/formatText";
 import { getTimeSpentInStatus } from "@/utils/getTimeSpentInStatus";
 import { useEffect, useState } from "react";
 import { getTimeOnSiteAndIndicator } from "@/utils/getTimeOnSiteAndIndicator";
+import { formatText } from "@/utils/formatText";
 
-// ============================
 // Types
-// ============================
-
 type TableRowProps = {
     collection: Collection;
 };
-
-// ============================
-// Component
-// ============================
 
 export default function TableRow({ collection }: TableRowProps) {
     const [timeOnSite, setTimeOnSite] = useState<string>("");
@@ -47,9 +40,6 @@ export default function TableRow({ collection }: TableRowProps) {
 
         return () => clearInterval(interval);
     }, [collection.checkedInAt]);
-
-    const statusConfig = STATUS_CONFIG[collection.currentStatus];
-    const Icon = statusConfig.icon;
 
     return (
         <tr className="collection-table-row">
@@ -101,13 +91,13 @@ export default function TableRow({ collection }: TableRowProps) {
             {/* Status */}
             <td className="current-status">
                 <Button
-                    variant={statusConfig.variant}
-                    icon={Icon}
-                    text={formatText(collection.currentStatus)}
+                    variant={COLLECTION_STATUSES[collection.currentStatus].text}
+                    icon={COLLECTION_STATUSES[collection.currentStatus].icon}
+                    text={formatText(COLLECTION_STATUSES[collection.currentStatus].text)}
                     onClick={() => { }}
                 />
 
-                {collection.currentStatus !== COLLECTION_STATUSES.CHECKED_OUT && (
+                {collection.currentStatus !== COLLECTION_STATUSES.CHECKED_OUT.text && (
                     <div>{getTimeSpentInStatus(collection)}</div>
                 )}
             </td>
@@ -116,12 +106,12 @@ export default function TableRow({ collection }: TableRowProps) {
             <td className="action action-column">
 
                 <Button
-                    variant="info only-icon"
+                    variant="info only-icon-btn"
                     icon={InfoIcon}
                 />
 
                 <Button
-                    variant="delete only-icon"
+                    variant="delete only-icon-btn"
                     icon={BinIcon}
                 />
 

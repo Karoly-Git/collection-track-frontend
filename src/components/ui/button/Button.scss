@@ -31,6 +31,21 @@
         }
     }
 
+    &.add-btn {
+        white-space: nowrap;
+        background-color: #004fb6;
+        color: white;
+    }
+
+    &.filter-btn {
+        color: gray;
+    }
+
+    &.active-filter {
+        background-color: #143757;
+        color: white;
+    }
+
     &.info {
         background: rgb(0, 139, 42);
         color: #fff;
@@ -40,7 +55,7 @@
         }
     }
 
-    &.only-icon {
+    &.only-icon-btn {
         padding: 0.5rem;
     }
 

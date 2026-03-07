@@ -1,6 +1,21 @@
 .dashboard {
     display: flex;
     flex-direction: column;
-
     gap: 2rem;
+
+    .controls {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+
+        .add-btn {
+            margin-left: auto;
+
+            @media(max-width: 500px) {
+                .btn-text {
+                    display: none;
+                }
+            }
+        }
+    }
 }

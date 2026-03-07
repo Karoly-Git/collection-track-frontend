@@ -2,108 +2,70 @@ import { useState } from "react";
 
 import "./FilterBar.scss";
 
-import { IoMdClose as ResetFiltersIcon } from "react-icons/io";
+import { IoMdClose as ResetIcon } from "react-icons/io";
 import { IoTodaySharp as TodayIcon } from "react-icons/io5";
 
-import { COLLECTION_STATUSES } from "@/constants/status-config";
-import { STATUS_ICONS } from "@/constants/status-icons";
+import { COLLECTION_STATUSES } from "@/constants/collection-statuses";
 
 import { formatText } from "@/utils/formatText";
 import Button from "@/components/ui/button/Button";
 
-type Status = typeof COLLECTION_STATUSES[keyof typeof COLLECTION_STATUSES];
-
-const STATUSES = Object.values(COLLECTION_STATUSES) as Status[];
-
-const createDefaultStatusFilters = (): Record<Status, boolean> =>
-    STATUSES.reduce((acc, status) => {
-        acc[status] = true;
-        return acc;
-    }, {} as Record<Status, boolean>);
-
-type StatusChipProps = {
-    label: string;
-    icon?: React.ElementType;
-    active: boolean;
-    onChange: (checked: boolean) => void;
-    className?: string;
-};
-
-function StatusChip({
-    label,
-    icon: Icon,
-    active,
-    onChange,
-    className = "",
-}: StatusChipProps) {
-    return (
-        <label className={`status-chip ${active ? "active" : ""} ${className}`}>
-            <input
-                type="checkbox"
-                checked={active}
-                onChange={(e) => onChange(e.target.checked)}
-            />
-
-            <span className="chip-label">
-                {Icon && <Icon className="chip-icon" />}
-                <span className="chip-text">{label}</span>
-            </span>
-        </label>
-    );
-}
-
 export default function FilterBar() {
-    const [showTodayOnly, setShowTodayOnly] = useState(true);
-    const [statusFilters, setStatusFilters] = useState<Record<Status, boolean>>(
-        createDefaultStatusFilters
-    );
+    const statusKeys = Object.keys(COLLECTION_STATUSES) as (keyof typeof COLLECTION_STATUSES)[];
 
-    const isStatusFilterActive = Object.values(statusFilters).some(
-        (checked) => !checked
-    );
+    type FilterKey = "TODAY" | keyof typeof COLLECTION_STATUSES;
 
-    const isAnyFilterApplied = !showTodayOnly || isStatusFilterActive;
+    const createInitialFilters = (): Record<FilterKey, boolean> => ({
+        TODAY: true,
+        ...Object.fromEntries(statusKeys.map(status => [status, true])),
+    } as Record<FilterKey, boolean>);
 
-    const resetFilters = () => {
-        setShowTodayOnly(true);
-        setStatusFilters(createDefaultStatusFilters());
-    };
+    const [filters, setFilters] = useState<Record<FilterKey, boolean>>(createInitialFilters());
 
-    const toggleStatus = (status: Status) => {
-        setStatusFilters((prev) => ({
+    const toggleFilter = (key: FilterKey): void => {
+        setFilters(prev => ({
             ...prev,
-            [status]: !prev[status],
+            [key]: !prev[key],
         }));
     };
+
+    const resetFilters = (): void => {
+        setFilters(createInitialFilters());
+    };
+
+    const isAllTrue = Object.values(filters).every(Boolean);
 
     return (
         <div className="filter-bar">
             {/* Today filter */}
-            <StatusChip
-                label="Today"
+            <Button
+                variant={`filter-btn ${filters.TODAY ? "active-filter" : ""}`}
                 icon={TodayIcon}
-                active={showTodayOnly}
-                onChange={setShowTodayOnly}
+                text="Today"
+                onClick={() => toggleFilter("TODAY")}
             />
 
             {/* Status filters */}
-            {STATUSES.map((status) => (
-                <StatusChip
-                    key={status}
-                    label={formatText(status)}
-                    icon={STATUS_ICONS[status]}
-                    active={statusFilters[status]}
-                    className={`status-${status.toLowerCase()}`}
-                    onChange={() => toggleStatus(status)}
-                />
-            ))}
+            {statusKeys.map(status => {
+                const config = COLLECTION_STATUSES[status];
+
+                return (
+                    <Button
+                        key={status}
+                        variant={`filter-btn ${filters[status] ? "active-filter" : ""}`}
+                        icon={config.icon}
+                        text={formatText(status)}
+                        onClick={() => toggleFilter(status)}
+                    />
+                );
+            })}
 
             {/* Reset filters */}
-            {isAnyFilterApplied && (
+            {!isAllTrue && (
                 <Button
                     type="button"
-                    icon={ResetFiltersIcon}
-                    variant="btn only-icon"
+                    icon={ResetIcon}
+                    variant="only-icon-btn"
                     onClick={resetFilters}
                 />
             )}
